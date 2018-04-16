@@ -78,7 +78,7 @@ describe('isPalindrome', () => {
     expect(isPalindrone('race car')).toBe(true);
     expect(isPalindrone('not a palindrome')).toBe(false);
     expect(isPalindrone('A man, a plan, a canal. Panama')).toBe(true);
-    expect(isPalindrone('0_0 (: /- :) 0-0')).toBe(false);
+    expect(isPalindrone('0_0 (: /- :) 0-0')).toBe(true);
 
     expect(isPalindrone(12321)).toBe(true);
     expect(isPalindrone(22)).toBe(true);
