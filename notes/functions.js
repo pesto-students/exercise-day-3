@@ -168,8 +168,109 @@ var add2 = new Function('x', 'y', 'return x + y');
  * Hoisting
  * Hoisting means “moving to the beginning of a scope.”
  * Function declarations are hoisted completely, variable declarations only partially.
+ * Assignments are not hoisted.
  */
+
 foo();
 function foo() {  // this function is hoisted
 
 }
+
+/**
+ * call(), apply(), and bind()
+ * They can supply a value for this when invoking a method and thus are mainly interesting in an object-oriented context
+ */
+
+/**
+ * Bind
+ * This performs partial function application—
+ * a new function is created that calls func with this set to thisValue and the following arguments set.
+ */
+
+function add(x, y) {
+  return x + y;
+}
+var plus1 = add.bind(null, 1);
+console.log(plus1(5));
+
+/**
+ * Call
+ * The first parameter is the value that this will have inside the invoked function;
+ * the remaining parameters are handed over as arguments to the invoked function.
+ * It's function invocation.
+ */
+
+var jane = {
+  name: 'Jane',
+    sayHelloTo: function (otherName) {
+      'use strict';
+      console.log(this.name+' says hello to '+otherName);
+  }
+}
+
+jane.sayHelloTo('Tarzan');
+jane.sayHelloTo.call(jane, 'Tarzan');
+var func = jane.sayHelloTo;
+func.call(jane, 'Tarzan');
+
+/**
+ * Apply
+ * This method uses the elements of argArray as arguments while calling the function func;
+ */
+var numbers = [5, 6, 2, 3, 7];
+var max = Math.max.apply(null, numbers);
+console.log(max);
+
+var array = ['a', 'b'];
+var elements = [0, 1, 2];
+array.push.apply(array, elements);
+console.info(array); // ["a", "b", 0, 1, 2]
+
+/**
+ * arguments
+ * It's an array-like object available in functions.
+ * Not available in arrow functions
+ */
+
+function logArgs() {
+  for (var i=0; i<arguments.length; i++) {
+      console.log(i+'. '+arguments[i]);
+  }
+}
+
+/**
+ * this inside a function.
+ * Refers to global in node and window in browsers
+ */
+
+function foo() {
+  console.log(this);
+}
+
+function bar() {
+  'use strict';
+  console.log(this === global, this ===undefined) 
+}
+
+/**
+ * Closures
+ * A closure is the combination of a function bundled together (enclosed) with references to its 
+ * surrounding state (the lexical environment). In other words, a closure gives you access to an 
+ * outer function’s scope from an inner function. In JavaScript, closures are created every 
+ * time a function is created, at function creation time.
+ * 
+ * Used in Partial Application of Functions
+ * Private data
+ * Callbacks
+ * First Class functions
+ */
+
+function foo(arg) {
+  return function() {
+    console.log(arg);
+  }
+}
+
+var logIt = foo('This parameter will be logged.');
+logIt();
+
