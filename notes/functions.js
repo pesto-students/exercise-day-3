@@ -49,9 +49,18 @@ obj.doThis();
 
 /**
  * “Parameter” Versus “Argument”
+ * Parameters are used to define a function. They are also called formal parameters and formal arguments.
+ * In the following example, param1 and param2 are parameters:
  * 
+ * Arguments are used to invoke a function. They are also called actual parameters and actual arguments.
+ * In the following example, 3 and 7 are arguments:
  */
 
+function foo(param1, param2) {
+
+}
+
+foo(3, 7);
 
 /**
  * Factory Functions vs Constructor Functions vs Classes
@@ -95,3 +104,72 @@ function factoryCar () {
 
 const car3 = factoryCar();
 console.log(car3.drive());
+
+/**
+ * Multiple ways of defining a function. 
+ * 
+ * 1. Via a function expression
+ * 2. Via a function declaration
+ * 3. Via the constructor Function()
+ * 
+ * All functions are objects, instances of Function:
+ */
+
+function foo(x) {
+  return x;
+}
+console.log(foo instanceof Function);
+
+/**
+ * Function Expressions
+ * They are not hoisted.
+ * Because normal function expressions don’t have a name, they are also called anonymous function expressions.
+ * 
+ * Named function expressions
+ * Named function expressions allow a function expression to refer to itself, which is useful for self-recursion.
+ * 
+ * Note - The name of a named function expression is only accessible inside the function expression.
+ */
+
+var mult = function (x, y) { return x * y };
+console.log(mult(3,4))
+
+var fac = function me(n) {
+  if (n > 0) {
+      return n * me(n-1);
+  } else {
+      return 1;
+  }
+};
+console.log(fac(3));
+
+/**
+ * Function Declarations
+ * 
+ * They are statements rather than expressions.
+ * 
+ */
+
+function add(x, y) {
+  return x + y;
+}
+
+/**
+ * Function Constructor
+ * 
+ * The constructor Function() evaluates JavaScript code stored in strings.
+ * This way of defining a function is slow and keeps code in strings. 
+ * It works similar to eval()
+ */
+
+var add2 = new Function('x', 'y', 'return x + y');
+
+/**
+ * Hoisting
+ * Hoisting means “moving to the beginning of a scope.”
+ * Function declarations are hoisted completely, variable declarations only partially.
+ */
+foo();
+function foo() {  // this function is hoisted
+
+}
