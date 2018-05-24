@@ -27,7 +27,7 @@ describe('applyOperator', () => {
     expect(applyOperator('+')).toEqual(0);
   });
 
-  test('should sum when +, -, *, /, % operator is applied', () => {
+  test('should apply the operator when +, -, *, /, % operator is applied', () => {
     expect(applyOperator('+', 1, 2, 3, 4, 5)).toEqual(15);
     expect(applyOperator('+', 1)).toEqual(1);
 
@@ -37,7 +37,7 @@ describe('applyOperator', () => {
     expect(applyOperator('*', 1, 2, 3, 4, 5)).toEqual(120);
     expect(applyOperator('*', 1)).toEqual(1);
 
-    expect(applyOperator('/', 1, 2, 3, 4, 5)).toEqual(15);
+    expect(applyOperator('/', 1, 2, 3, 4, 5)).toEqual(0.0083);
     expect(applyOperator('/', 1)).toEqual(1);
 
     expect(applyOperator('%', 27, 13, 3)).toEqual(1);
@@ -45,17 +45,19 @@ describe('applyOperator', () => {
   });
 
   test('should throw error when operator is not specified', () => {
-    expect(applyOperator()).toThrowError();
+    expect(() => applyOperator()).toThrowError();
   });
 });
 
 describe('isEven', () => {
   it('should return true if even number is sent as argument', () => {
     expect(isEven(4)).toBe(true);
+    expect(isEven(2)).toBe(true);
   });
 
   it('should return false if odd number is sent as argument', () => {
     expect(isEven(51)).toBe(false);
+    expect(isEven(1)).toBe(false);
   });
 });
 
@@ -112,11 +114,13 @@ describe('counterFactory', () => {
 
 describe('isOdd', () => {
   it('should return true if odd number is sent as argument', () => {
+    expect(isOdd(1)).toBe(true);
     expect(isOdd(41)).toBe(true);
   });
 
   it('should return false if even number is sent as argument', () => {
     expect(isOdd(2)).toBe(false);
+    expect(isOdd(24)).toBe(false);
   });
 });
 
