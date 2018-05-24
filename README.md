@@ -6,6 +6,8 @@ There are separate branches for Segment 1 and Segment 2 in this repository. Both
 
 2) Written/Multiple Choice questions
 
+The reason for two separate branches for two segments is to have separate test suites run on travis CI.
+
 ### Instructions:
 
 1) Clone this repo using
