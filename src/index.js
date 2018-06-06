@@ -4,15 +4,22 @@
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
+  const splittedString = string.split('');
+  const resultArray = [];
+  splittedString.forEach((element) => {
+    resultArray.unshift(element);
+  });
 
+  return resultArray.join('');
 }
+
 
 /** (*)
  * Return an English translated sentence of the passed binary string.
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  return str.split(/\s/).map(val => String.fromCharCode(parseInt(val, 2))).join('');
 }
 
 /** (*)
@@ -20,13 +27,23 @@ function binaryAgent(str) {
  */
 function isPalindrome(string) {
   // Was it a car or a cat I saw
+  const strippedFromSpecialChars = string.toString().replace(/[^A-Za-z0-9]/ig, '');
+  const reversedString = reverseString(strippedFromSpecialChars).toLowerCase();
+  return strippedFromSpecialChars.toLowerCase() === reversedString;
 }
 
 /** (*)
 * Return the longest word in a string
 */
 function longestWordInString(string) {
-
+  const stringArray = string.split(' ');
+  const longestWord = stringArray.reduce((longest, currentWord) => {
+    if (currentWord.length > longest.length) {
+      return currentWord;
+    }
+    return longest;
+  }, '');
+  return longestWord.length;
 }
 
 /**
@@ -114,7 +131,23 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
+  const [firstNumber, secondNumber] = arr;
 
+  let largestNumber = firstNumber;
+  let smallestNumber = secondNumber;
+
+  if (firstNumber < secondNumber) {
+    largestNumber = secondNumber;
+    smallestNumber = firstNumber;
+  }
+
+  let sum = 0;
+
+  for (let i = smallestNumber; i < largestNumber; i += 1) {
+    sum += i;
+  }
+
+  return sum + largestNumber;
 }
 
 /** (*)
