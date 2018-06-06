@@ -1,10 +1,14 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 
 /** Q1 (*)
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-
+  var fact=1;
+  for (var i=1;i<=num;i++){
+    fact=fact*i;
+  }
+  return fact;
 }
 
 /** Q2 (*)
@@ -14,6 +18,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
+  var value =1
+  var newCounter = function (){
+    return value++;
+  }
+  return newCounter;
 
 }
 
@@ -22,12 +31,28 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
+  var value =1
+  var increment = function (){
+    return value++;
+  }
+  var decrement = function (){
+    return value;
+  }
+  return newCounter;
 
 }
+
+
 
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
+  if((a+b)>c && (a+c)>b && (b+c)>a ){
+    return true;
+  }
+  else {
+    return false;
+  }
 
 }
 
@@ -58,13 +83,19 @@ function cacheFunction(cb) {
  */
 function applyOperator() {
 
+
 }
 
 /** Q8 (*)
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  if(num % 2 === 0){
+    return false;
+  }
+  else{
+    return true;
+  }
 }
 
 /** Q9 (*)
@@ -80,6 +111,12 @@ function isEven(num) {
  */
 function booWho(bool) {
   // What is the new fad diet for ghost developers? The Boolean.
+  if(typeof bool === 'boolean'){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 /** Q11 (*)
@@ -93,6 +130,26 @@ function booWho(bool) {
  * numbers less than 10 are 1, 1, 3, and 5
  */
 function sumFibs(num) {
+  var sum=1;
+  var a=0;
+  var b=1;
+  var c;
+  for(var i=1;;i++){
+    c= a+b;
+    if(c>num){
+      break;
+    }
+    if(c%2 ===0){
+      
+    }
+    else{
+      sum=sum+c;
+    }
+    a=b;
+    b=c;
+
+  }
+  return sum;
 
 }
 
@@ -104,6 +161,17 @@ function sumFibs(num) {
  * The provided number may not be a prime.
  */
 function sumPrimes(num) {
+  var sum=0;
+  var flag=0;
+  for (var i=2;i<=num;i++){
+    for (var j =2;j<=i; j++){
+      if(i%j==0){
+
+      }
+      
+    }
+  }
+
 
 }
 
@@ -111,6 +179,7 @@ function sumPrimes(num) {
  * Return the length of diagonal, given the length of sides of rectangle
  */
 function rectangleDiagonal(length, height) {
+  return (Math.sqrt(Math.pow(length,2)+Math.pow(height,2)))
 
 }
 
