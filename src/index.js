@@ -31,14 +31,17 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
-  var value =1
-  var increment = function (){
-    return value++;
+  var value =1;
+  var funcObject ={
+    increment : function(){
+      return value++;
+    },
+
+    decrement : function(){
+      return value--
+    }
   }
-  var decrement = function (){
-    return value;
-  }
-  return newCounter;
+  return funcObject;
 
 }
 
@@ -102,6 +105,14 @@ function isOdd(num) {
  * Do this without using the % operator.
  */
 function isEven(num) {
+  
+  if(((num/2)*2)===num){
+    return true;
+  }
+  else{
+    return false;
+  }
+
 
 }
 
