@@ -4,7 +4,18 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
+  if (num <= 0) {
+    throw new Error('Negative Number!');
+  }
 
+  let output = 1;
+  let number = num;
+  while (number > 1) {
+    output *= number;
+    number -= 1;
+  }
+
+  return output;
 }
 
 /** Q2 (*)
