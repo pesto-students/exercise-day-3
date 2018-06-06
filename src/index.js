@@ -131,7 +131,23 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
+  const [firstNumber, secondNumber] = arr;
 
+  let largestNumber = firstNumber;
+  let smallestNumber = secondNumber;
+
+  if (firstNumber < secondNumber) {
+    largestNumber = secondNumber;
+    smallestNumber = firstNumber;
+  }
+
+  let sum = 0;
+
+  for (let i = smallestNumber; i < largestNumber; i += 1) {
+    sum += i;
+  }
+
+  return sum + largestNumber;
 }
 
 /** (*)
