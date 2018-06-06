@@ -4,7 +4,14 @@
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  let x = string.length;
+  let rev = '';
+  const i = 0;
+  while (x >= 0) {
+    rev += string[x];
+    x -= 1;
+  }
+  return rev;
 }
 
 /** (*)
@@ -12,7 +19,14 @@ function reverseString(string) {
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  const arr = str.split(' ');
+  let str2 = '';
+  let i = 0;
+  for (i; i < arr.length; i += 1) {
+    str2 += String.fromCharCode(parseInt(arr[i], 2));
+    // str=String.fromCharCode(65);
+  }
+  return str2;
 }
 
 /** (*)
@@ -89,6 +103,16 @@ function largestOfFour(arr) {
  * 19 is less than 20 (index 2) and greater than 5 (index 1).
  */
 function getIndexToIns(arr, num) {
+  arr.sort((a, b) => a - b);
+  const x = arr.length;
+  let i = 0;
+  while (i < x) {
+    if (num <= arr[i]) {
+      return i;
+    }
+    i += 1;
+  }
+  return x;
   // Find my place in this sorted array.
 }
 
