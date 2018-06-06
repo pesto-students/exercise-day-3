@@ -37,6 +37,17 @@ function binaryAgent(str) {
  * Return true for palindrome else false
  */
 function isPalindrome(string) {
+  var alterString;
+  var rev;
+  if (typeof string === 'number') {
+    alterString = `${string}`;
+  } else {
+    alterString = string;
+  }
+  alterString = alterString.toLowerCase();
+  alterString = alterString.replace(/[^a-zA-Z0-9]/g, '');
+  rev = reverseString(alterString);
+  return rev === alterString;
 }
 
 /** (*)
