@@ -1,10 +1,18 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-var */
+/* eslint-disable no-bitwise */
 
 /** Q1 (*)
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-
+  var x = 1;
+  var y = num;
+  while (y) {
+    x *= y;
+    y -= 1;
+  }
+  return x;
 }
 
 /** Q2 (*)
@@ -14,7 +22,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  var x = 1;
+  return function () {
+    x += 1;
+    return x;
+  };
 }
 
 // Q3 (*)
@@ -28,14 +40,19 @@ function counterFactory() {
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  if (a + b > c && b + c > a && c + a > b) {
+    return true;
+  }
+  return false;
 }
 
 // Q5 (*)
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
 function limitFunctionCallCount(cb, n) {
+  return function () {
 
+  };
 }
 
 // Q6 (*)
@@ -64,14 +81,19 @@ function applyOperator() {
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  if (num & 1) {
+    return true;
+  }
+  return false;
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
-
+  if (num & 1) {
+    return false;
+  } return true;
 }
 
 /** Q10 (*)
@@ -79,6 +101,10 @@ function isEven(num) {
  * Boolean primitives are true and false.
  */
 function booWho(bool) {
+  if (bool === true || bool === false) {
+    return true;
+  }
+  return false;
   // What is the new fad diet for ghost developers? The Boolean.
 }
 
@@ -93,7 +119,19 @@ function booWho(bool) {
  * numbers less than 10 are 1, 1, 3, and 5
  */
 function sumFibs(num) {
-
+  var a = 1;
+  var b = 1;
+  var sum = a + b;
+  var c;
+  while (b <= num) {
+    c = b;
+    b = a + b;
+    a = c;
+    if (b <= num && b % 2 === 1) {
+      sum += b;
+    }
+  }
+  return sum;
 }
 
 /** Q12 (*)
@@ -104,14 +142,35 @@ function sumFibs(num) {
  * The provided number may not be a prime.
  */
 function sumPrimes(num) {
+  var sum = 2;
+  var i;
+  var j;
+  var isPrime;
 
+  for (i = 3; i <= num; i += 2) {
+    j = 3;
+    isPrime = true;
+    while (j <= i / 2) {
+      if (i % j === 0) {
+        isPrime = false;
+      }
+      j += 2;
+    }
+    if (isPrime) {
+      sum += i;
+    }
+  }
+  return sum;
 }
 
 /** Q13 (*)
  * Return the length of diagonal, given the length of sides of rectangle
  */
 function rectangleDiagonal(length, height) {
-
+  var diagonal;
+  var x = (length * length) + (height * height);
+  diagonal = Math.sqrt(x);
+  return diagonal;
 }
 
 module.exports = {
