@@ -27,6 +27,9 @@ function binaryAgent(str) {
  */
 function isPalindrome(string) {
   // Was it a car or a cat I saw
+  const strippedFromSpecialChars = string.toString().replace(/[^A-Za-z0-9]/ig, '');
+  const reversedString = reverseString(strippedFromSpecialChars).toLowerCase();
+  return strippedFromSpecialChars.toLowerCase() === reversedString;
 }
 
 /** (*)
