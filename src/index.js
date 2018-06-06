@@ -21,7 +21,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  let i = 0;
+  return function incrementCount() {
+    i += 1;
+    return i;
+  };
 }
 
 // Q3 (*)
