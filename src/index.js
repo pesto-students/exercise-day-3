@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-var */
+/* eslint-disble no-arguments */
 /* eslint-disable no-bitwise */
 
 /** Q1 (*)
@@ -34,7 +35,6 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
-
 }
 
 // Q4 (*)
@@ -50,9 +50,14 @@ function isTriangle(a, b, c) {
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
 function limitFunctionCallCount(cb, n) {
-  return function () {
-
-  };
+  // var count = 0;
+  // return function () {
+  //   if (count < n) {
+  //     count += 1;
+  //     return cb(null, arguments);
+  //   }
+  //   return null;
+  // };
 }
 
 // Q6 (*)
