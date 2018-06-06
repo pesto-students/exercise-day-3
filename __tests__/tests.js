@@ -55,7 +55,7 @@ describe('rot13', () => {
   });
 });
 
-describe('isPalindrome', () => {
+describe.only('isPalindrome', () => {
   test('should successfully check strings and numbers', () => {
     expect(isPalindrome('eye')).toBe(true);
     expect(isPalindrome('_eye')).toBe(true);

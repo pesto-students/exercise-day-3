@@ -1,10 +1,18 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-var */
+/* eslint-disable prefer-arrow-callback */
+
 
 /** (*)
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  var str = '';
+  var i;
+  for (i = string.length - 1; i >= 0; i -= 1) {
+    str += string[i];
+  }
+  return str;
 }
 
 /** (*)
@@ -12,14 +20,23 @@ function reverseString(string) {
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  var array;
+  var number;
+  var final = '';
+  var str1;
+  array = str.split(' ');
+  array.forEach(function (item) {
+    number = parseInt(item, 2);
+    str1 = String.fromCharCode(number);
+    final += str1;
+  });
+  return final;
 }
 
 /** (*)
  * Return true for palindrome else false
  */
 function isPalindrome(string) {
-  // Was it a car or a cat I saw
 }
 
 /** (*)
