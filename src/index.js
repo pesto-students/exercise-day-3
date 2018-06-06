@@ -22,7 +22,7 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-  var x = 1;
+  var x = 0;
   return function () {
     x += 1;
     return x;
