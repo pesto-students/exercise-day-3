@@ -6,7 +6,6 @@
 function reverseString(string) {
   const splittedString = string.split('');
   const resultArray = [];
-  // 'c', 'a', 't'
   splittedString.forEach((element) => {
     resultArray.unshift(element);
   });
@@ -20,7 +19,7 @@ function reverseString(string) {
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  return str.split(/\s/).map(val => String.fromCharCode(parseInt(val, 2))).join('');
 }
 
 /** (*)
