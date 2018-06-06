@@ -51,7 +51,10 @@ function counterFactory() {
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  if (a + b <= c || b + c <= a || c + a <= b) {
+    return false;
+  }
+  return true;
 }
 
 // Q5 (*)
