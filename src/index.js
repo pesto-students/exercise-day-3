@@ -4,7 +4,14 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
+  let output = 1;
+  let number = num;
+  while (number > 1) {
+    output *= number;
+    number -= 1;
+  }
 
+  return output;
 }
 
 /** Q2 (*)
@@ -14,7 +21,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  let i = 0;
+  return function incrementCount() {
+    i += 1;
+    return i;
+  };
 }
 
 // Q3 (*)
@@ -22,13 +33,28 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
+  const output = {};
+  let count = 0;
+  output.increment = () => {
+    count += 1;
+    return count;
+  };
 
+  output.decrement = () => {
+    count -= 1;
+    return count;
+  };
+
+  return output;
 }
 
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  if (a + b <= c || b + c <= a || c + a <= b) {
+    return false;
+  }
+  return true;
 }
 
 // Q5 (*)
