@@ -8,6 +8,7 @@
     }
     console.log(y);
   ```
+  1undefined
 
 2) Assuming obj is an “empty” object in scope, say:
   ```js
@@ -29,6 +30,8 @@
     console.log("a defined? " + (typeof a !== 'undefined'));
     console.log("b defined? " + (typeof b !== 'undefined'));
   ```
+  a defined boolean
+  b defined boolean
 
 4) What will the following code output and why?
   ```js
@@ -44,8 +47,10 @@
     }
     outer();
   ```
+  3 3 3
 
 5) What will the following code output and why?
   ```js
     console.log(typeof typeof 1);
   ```
+  String
