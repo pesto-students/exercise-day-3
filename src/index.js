@@ -4,8 +4,16 @@
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
+  const splittedString = string.split('');
+  const resultArray = [];
+  // 'c', 'a', 't'
+  splittedString.forEach((element) => {
+    resultArray.unshift(element);
+  });
 
+  return resultArray.join('');
 }
+
 
 /** (*)
  * Return an English translated sentence of the passed binary string.
