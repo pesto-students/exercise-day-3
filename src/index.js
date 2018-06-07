@@ -65,6 +65,13 @@ function isTriangle(a, b, c) {
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
 function limitFunctionCallCount(cb, n) {
+  var count=0;
+  return function(){
+    if(count++ <n){
+      return cb();
+    }
+    else return null;
+  }
 
 }
 
@@ -87,8 +94,25 @@ function cacheFunction(cb) {
  *
  */
 function applyOperator() {
+  /*if(arguments[0] !== '+' || arguments[0] !== '-' || arguments[0] !== '*' || arguments[0] !== '/' || arguments[0] !== '%'){
+    throw new  Error('should throw error when operator is not specified');
+  }
 
+  if(typeof(arguments[1]) !== 'number' ){
+    return typeof(arguments[1]);
+  } */
 
+  if(typeof(arguments[1]) !== 'number' ){
+    return 0;
+  }
+  var operator = arguments[0];
+  var operands = arguments;
+  return operands.split(1);
+  
+}
+
+function calculator(){
+  
 }
 
 /** Q8 (*)
