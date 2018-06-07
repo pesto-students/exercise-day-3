@@ -31,14 +31,16 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
-  var value =1;
+  var value =0;
   var funcObject ={
     increment : function(){
-      return value++;
+      value ++;
+      return value;
     },
 
     decrement : function(){
-      return value--
+      value--;
+      return value;
     }
   }
   return funcObject;
