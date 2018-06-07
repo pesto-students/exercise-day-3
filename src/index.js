@@ -93,7 +93,7 @@ function applyOperator() {
  * Do this without using the % operator.
  */
 function isOdd(num) {
-  if(num % 2 === 0){
+  if((Math.floor(num/2)*2)===num){
     return false;
   }
   else{
@@ -106,7 +106,7 @@ function isOdd(num) {
  */
 function isEven(num) {
   
-  if(((num/2)*2)===num){
+  if((Math.floor(num/2)*2)===num){
     return true;
   }
   else{
@@ -173,17 +173,20 @@ function sumFibs(num) {
  */
 function sumPrimes(num) {
   var sum=0;
-  var flag=0;
-  for (var i=2;i<=num;i++){
-    for (var j =2;j<=i; j++){
-      if(i%j==0){
+  for(var i=2; i<=num;i++){
+    if(isPrime(i)){
 
-      }
-      
+      sum += i;
     }
   }
+  return sum;
 
+}
 
+function isPrime(num){
+  for(var i = 2; i < num; i++)
+    if(num % i === 0) return false;
+  return true;
 }
 
 /** Q13 (*)
