@@ -1,10 +1,14 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 
 /** Q1 (*)
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-
+  var fact=1;
+  for (var i=1;i<=num;i++){
+    fact=fact*i;
+  }
+  return fact;
 }
 
 /** Q2 (*)
@@ -14,6 +18,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
+  var value =1
+  var newCounter = function (){
+    return value++;
+  }
+  return newCounter;
 
 }
 
@@ -22,12 +31,33 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
+  var value =0;
+  var funcObject ={
+    increment : function(){
+      value ++;
+      return value;
+    },
+
+    decrement : function(){
+      value--;
+      return value;
+    }
+  }
+  return funcObject;
 
 }
+
+
 
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
+  if((a+b)>c && (a+c)>b && (b+c)>a ){
+    return true;
+  }
+  else {
+    return false;
+  }
 
 }
 
@@ -35,7 +65,14 @@ function isTriangle(a, b, c) {
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
 function limitFunctionCallCount(cb, n) {
-
+  var count=0;
+  return function(){
+    if(count++ <n){
+      return cb();
+    }
+    else return null;
+  }
+  
 }
 
 // Q6 (*)
@@ -46,7 +83,9 @@ function limitFunctionCallCount(cb, n) {
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
 function cacheFunction(cb) {
-
+  return function(cb){
+    return cb()
+  };
 }
 
 /** Q7 (*)
@@ -57,20 +96,52 @@ function cacheFunction(cb) {
  *
  */
 function applyOperator() {
+  if(typeof(arguments[1]) !== 'number' ){
+    return 0;
+  }
 
+  [operator, ...operands ] = arguments;
+  switch(operator){
+    case '+' : return operands.reduce((acc, curr)=> acc + curr   );
+    case '-' : return operands.reduce((acc, curr)=> acc - curr ,0  );
+    case '*' : return operands.reduce((acc, curr)=> acc * curr ,1 );
+    case '/' : return Number(parseFloat( operands.reduce((acc, curr)=> acc / curr   )).toFixed(4));
+    case '%' : return operands.reduce((acc, curr)=> acc % curr  );
+    default : throw new myError();
+  } 
+
+ 
+  
+}
+
+function calculator(){
+  
 }
 
 /** Q8 (*)
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  if((Math.floor(num/2)*2)===num){
+    return false;
+  }
+  else{
+    return true;
+  }
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
+  
+  if((Math.floor(num/2)*2)===num){
+    return true;
+  }
+  else{
+    return false;
+  }
+
 
 }
 
@@ -80,6 +151,12 @@ function isEven(num) {
  */
 function booWho(bool) {
   // What is the new fad diet for ghost developers? The Boolean.
+  if(typeof bool === 'boolean'){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 /** Q11 (*)
@@ -93,6 +170,26 @@ function booWho(bool) {
  * numbers less than 10 are 1, 1, 3, and 5
  */
 function sumFibs(num) {
+  var sum=1;
+  var a=0;
+  var b=1;
+  var c;
+  for(var i=1;;i++){
+    c= a+b;
+    if(c>num){
+      break;
+    }
+    if(c%2 ===0){
+      
+    }
+    else{
+      sum=sum+c;
+    }
+    a=b;
+    b=c;
+
+  }
+  return sum;
 
 }
 
@@ -104,13 +201,28 @@ function sumFibs(num) {
  * The provided number may not be a prime.
  */
 function sumPrimes(num) {
+  var sum=0;
+  for(var i=2; i<=num;i++){
+    if(isPrime(i)){
 
+      sum += i;
+    }
+  }
+  return sum;
+
+}
+
+function isPrime(num){
+  for(var i = 2; i < num; i++)
+    if(num % i === 0) return false;
+  return true;
 }
 
 /** Q13 (*)
  * Return the length of diagonal, given the length of sides of rectangle
  */
 function rectangleDiagonal(length, height) {
+  return (Math.sqrt(Math.pow(length,2)+Math.pow(height,2)))
 
 }
 
