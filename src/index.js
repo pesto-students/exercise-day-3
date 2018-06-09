@@ -72,7 +72,7 @@ function limitFunctionCallCount(cb, n) {
     }
     else return null;
   }
-
+  
 }
 
 // Q6 (*)
@@ -83,7 +83,9 @@ function limitFunctionCallCount(cb, n) {
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
 function cacheFunction(cb) {
-
+  return function(cb){
+    return cb()
+  };
 }
 
 /** Q7 (*)
@@ -94,20 +96,21 @@ function cacheFunction(cb) {
  *
  */
 function applyOperator() {
-  /*if(arguments[0] !== '+' || arguments[0] !== '-' || arguments[0] !== '*' || arguments[0] !== '/' || arguments[0] !== '%'){
-    throw new  Error('should throw error when operator is not specified');
-  }
-
-  if(typeof(arguments[1]) !== 'number' ){
-    return typeof(arguments[1]);
-  } */
-
   if(typeof(arguments[1]) !== 'number' ){
     return 0;
   }
-  var operator = arguments[0];
-  var operands = arguments;
-  return operands.split(1);
+
+  [operator, ...operands ] = arguments;
+  switch(operator){
+    case '+' : return operands.reduce((acc, curr)=> acc + curr   );
+    case '-' : return operands.reduce((acc, curr)=> acc - curr ,0  );
+    case '*' : return operands.reduce((acc, curr)=> acc * curr ,1 );
+    case '/' : return Number(parseFloat( operands.reduce((acc, curr)=> acc / curr   )).toFixed(4));
+    case '%' : return operands.reduce((acc, curr)=> acc % curr  );
+    default : throw new myError();
+  } 
+
+ 
   
 }
 
