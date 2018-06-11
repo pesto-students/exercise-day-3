@@ -4,7 +4,14 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-
+  if (num === 0) {
+    return 1;
+  }
+  let fact = 1;
+  for (let i = 2; i <= num; i += 1) {
+    fact *= i;
+  }
+  return fact;
 }
 
 /** Q2 (*)
@@ -14,7 +21,12 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  let count = 0;
+  const myFunc = function () {
+    count += 1;
+    return count;
+  };
+  return myFunc;
 }
 
 // Q3 (*)
@@ -28,14 +40,25 @@ function counterFactory() {
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  if ((a + b) < c || (b + c) < a || (c + a) < b) {
+    return false;
+  }
+  return true;
 }
 
 // Q5 (*)
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
 function limitFunctionCallCount(cb, n) {
-
+  let count = 0;
+  const myfunc = function () {
+    count += 1;
+    if (count > n) {
+      return cb();
+    }
+    return null;
+  };
+  return myfunc;
 }
 
 // Q6 (*)
@@ -45,6 +68,7 @@ function limitFunctionCallCount(cb, n) {
 // If the returned function is invoked with arguments that it has already seen
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
+
 function cacheFunction(cb) {
 
 }
@@ -64,14 +88,20 @@ function applyOperator() {
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  if (Math.floor(num / 2) * 2 !== num) {
+    return true;
+  }
+  return false;
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
-
+  if (Math.floor(num / 2) * 2 === num) {
+    return true;
+  }
+  return false;
 }
 
 /** Q10 (*)
@@ -80,6 +110,10 @@ function isEven(num) {
  */
 function booWho(bool) {
   // What is the new fad diet for ghost developers? The Boolean.
+  if (typeof bool === 'boolean') {
+    return true;
+  }
+  return false;
 }
 
 /** Q11 (*)
@@ -93,7 +127,19 @@ function booWho(bool) {
  * numbers less than 10 are 1, 1, 3, and 5
  */
 function sumFibs(num) {
-
+  let sum = 2;
+  let a = 1;
+  let b = 1;
+  let nextnum = 0;
+  while (nextnum + a <= num) {
+    nextnum = a + b;
+    if (nextnum % 2 !== 0) {
+      sum += nextnum;
+    }
+    a = b;
+    b = nextnum;
+  }
+  return sum;
 }
 
 /** Q12 (*)
@@ -104,14 +150,34 @@ function sumFibs(num) {
  * The provided number may not be a prime.
  */
 function sumPrimes(num) {
-
+  let sum = 2;
+  function isPrime(number) {
+    for (let i = 2; i < number; i += 1) {
+      if (number % i === 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+  if (num < 2) {
+    return 0;
+  }
+  if (num === 2) {
+    return 2;
+  }
+  for (let i = 3; i <= num; i += 1) {
+    if (isPrime(i)) {
+      sum += i;
+    }
+  }
+  return sum;
 }
 
 /** Q13 (*)
  * Return the length of diagonal, given the length of sides of rectangle
  */
 function rectangleDiagonal(length, height) {
-
+  return Math.sqrt((length ** 2) + (height ** 2));
 }
 
 module.exports = {
