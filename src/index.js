@@ -4,7 +4,8 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-
+  if (num === 0) return 1;
+  return factorial(num - 1) * num;
 }
 
 /** Q2 (*)
@@ -14,7 +15,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  let count = 0;
+  return () => {
+    count += 1;
+    return count;
+  };
 }
 
 // Q3 (*)
@@ -22,20 +27,40 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
+  let count = 0;
+  return {
+    increment: () => {
+      count += 1;
+      return count;
+    },
 
+    decrement: () => {
+      count -= 1;
+      return count;
+    },
+  };
 }
 
 // Q4 (*)
-// Return a true or false for wether a triangle can be formed using the three lines
+// Return a true or false for whether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  if (a + b <= c || a + c <= b || b + c <= a) {
+    return false;
+  }
+  return true;
 }
 
 // Q5 (*)
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
 function limitFunctionCallCount(cb, n) {
-
+  let count = n;
+  return () => {
+    while (count <= 0) {
+      count -= 1;
+      cb();
+    }
+  };
 }
 
 // Q6 (*)
@@ -46,7 +71,13 @@ function limitFunctionCallCount(cb, n) {
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
 function cacheFunction(cb) {
-
+  const cbParams = [];
+  if (cb) {
+    return () => {
+      const func = cb;
+    };
+  }
+  return () => {};
 }
 
 /** Q7 (*)
@@ -56,22 +87,46 @@ function cacheFunction(cb) {
  * Example: applyOperator('+', 1,2,3,4,5) => 15
  *
  */
-function applyOperator() {
-
+function applyOperator(operator, ...operands) {
+  if (operands.length === 0) return 0;
+  return operands.reduce((acc, operand) => {
+    switch (operator) {
+      case '+':
+        return acc + operand;
+      case '-':
+        return acc - operand;
+      case '*':
+        return acc * operand;
+      case '/':
+        return acc / operand;
+      default:
+        return acc;
+    }
+  });
 }
 
 /** Q8 (*)
  * Do this without using the % operator.
  */
 function isOdd(num) {
+  const quotientFloored = Math.floor(num / 2);
 
+  if ((quotientFloored * 2) === num) {
+    return false;
+  }
+  return true;
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
+  const quotientFloored = Math.floor(num / 2);
 
+  if ((quotientFloored * 2) === num) {
+    return true;
+  }
+  return false;
 }
 
 /** Q10 (*)
@@ -80,6 +135,8 @@ function isEven(num) {
  */
 function booWho(bool) {
   // What is the new fad diet for ghost developers? The Boolean.
+  if (typeof bool === 'boolean') return true;
+  return false;
 }
 
 /** Q11 (*)
@@ -92,8 +149,22 @@ function booWho(bool) {
  * For example, sumFibs(10) should return 10 because all odd Fibonacci
  * numbers less than 10 are 1, 1, 3, and 5
  */
-function sumFibs(num) {
 
+function getFibonnaciSequence(num) {
+  if (num <= 1) return [0, 1];
+  const s = getFibonnaciSequence(num - 1);
+  if (!((num - 1) % 2)) {
+    if ((s[s.length - 1] + s[s.length - 2]) <= num) {
+      s.push(s[s.length - 1] + s[s.length - 2]);
+      return s;
+    }
+  }
+  return s;
+}
+function sumFibs(num) {
+  const fibonacciSequence = getFibonnaciSequence(num).slice(1);
+
+  return fibonacciSequence.reduce((total, item) => total + item);
 }
 
 /** Q12 (*)
@@ -103,8 +174,27 @@ function sumFibs(num) {
  * number because it's only divisible by one and two.
  * The provided number may not be a prime.
  */
-function sumPrimes(num) {
 
+
+function isPrime(num) {
+  if (num <= 1) return false;
+  for (let i = 2; i < num; i += 1) {
+    if (!(num % i)) return false;
+  }
+  return true;
+}
+function findAllPrimes(num) {
+  const arr = [];
+  for (let i = 2; i <= num; i += 1) {
+    if (isPrime(i)) arr.push(i);
+  }
+
+  return arr;
+}
+function sumPrimes(num) {
+  const primes = findAllPrimes(num);
+
+  return primes.reduce((acc, item) => acc + item);
 }
 
 /** Q13 (*)
