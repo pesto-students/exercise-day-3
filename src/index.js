@@ -7,13 +7,12 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-  var x = 1;
-  var y = num;
-  while (y) {
-    x *= y;
-    y -= 1;
+  let result = 0;
+  if (num === 0 || num === 1) {
+    return 1;
   }
-  return x;
+  result = factorial(num - 1) * num;
+  return result;
 }
 
 /** Q2 (*)
@@ -23,11 +22,12 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-  var x = 0;
-  return function () {
+  let x = 0;
+  function innerFunc() {
     x += 1;
     return x;
-  };
+  }
+  return innerFunc;
 }
 
 // Q3 (*)
@@ -35,6 +35,18 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
+  let count = 0;
+  const operation = {
+    increment() {
+      count += 1;
+      return count;
+    },
+    decrement() {
+      count -= 1;
+      return count;
+    },
+  };
+  return operation;
 }
 
 // Q4 (*)
@@ -49,15 +61,16 @@ function isTriangle(a, b, c) {
 // Q5 (*)
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
-function limitFunctionCallCount(cb, n) {
-  // var count = 0;
-  // return function () {
-  //   if (count < n) {
-  //     count += 1;
-  //     return cb(null, arguments);
-  //   }
-  //   return null;
-  // };
+function limitFunctionCallCount(cb) {
+  var count = 0;
+  function callCount(n) {
+    if (count < n) {
+      count += 1;
+      return cb();
+    }
+    return null;
+  }
+  return callCount;
 }
 
 // Q6 (*)
@@ -68,7 +81,18 @@ function limitFunctionCallCount(cb, n) {
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
 function cacheFunction(cb) {
-
+  const cache = [];
+  function innerFunc(n) {
+    if (!cache.includes(n)) {
+      const answer = cb(n);
+      cache.push(answer);
+      return answer;
+    }
+    const index = cache.indexOf(n);
+    return cache[index];
+  }
+  console.log(cache);
+  return innerFunc;
 }
 
 /** Q7 (*)
