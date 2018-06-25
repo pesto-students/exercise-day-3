@@ -1,10 +1,18 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-var */
+/* eslint-disble no-arguments */
+/* eslint-disable no-bitwise */
 
 /** Q1 (*)
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-
+  let result = 0;
+  if (num === 0 || num === 1) {
+    return 1;
+  }
+  result = factorial(num - 1) * num;
+  return result;
 }
 
 /** Q2 (*)
@@ -14,7 +22,12 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  let x = 0;
+  function innerFunc() {
+    x += 1;
+    return x;
+  }
+  return innerFunc;
 }
 
 // Q3 (*)
@@ -22,20 +35,42 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
-
+  let count = 0;
+  const operation = {
+    increment() {
+      count += 1;
+      return count;
+    },
+    decrement() {
+      count -= 1;
+      return count;
+    },
+  };
+  return operation;
 }
 
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  if (a + b > c && b + c > a && c + a > b) {
+    return true;
+  }
+  return false;
 }
 
 // Q5 (*)
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
-function limitFunctionCallCount(cb, n) {
-
+function limitFunctionCallCount(cb, invokeCount) {
+  var count = 0;
+  function callCount(...args) {
+    if (count < invokeCount) {
+      count += 1;
+      return cb(...args);
+    }
+    return null;
+  }
+  return callCount;
 }
 
 // Q6 (*)
@@ -46,7 +81,15 @@ function limitFunctionCallCount(cb, n) {
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
 function cacheFunction(cb) {
-
+  const cache = new Map();
+  function innerFunc(...args) {
+    const argsKey = args.join('');
+    if (cache.has(argsKey)) return cache.get(argsKey);
+    const answer = cb(...args);
+    cache.set(argsKey, answer);
+    return answer;
+  }
+  return innerFunc;
 }
 
 /** Q7 (*)
@@ -56,22 +99,37 @@ function cacheFunction(cb) {
  * Example: applyOperator('+', 1,2,3,4,5) => 15
  *
  */
-function applyOperator() {
-
+function applyOperator(operator, ...operand) {
+  if (!operand.length) {
+    return 0;
+  }
+  let exp = operand.reduce((acc, val) => `${acc}${operator}${val}`, '');
+  console.log(exp);
+  if (operator !== '+' && operator !== '-') {
+    exp = exp.slice(1);
+  }
+  console.log(exp);
+  const result = eval(exp); /* eslint-disable-line */
+  return result;
 }
 
 /** Q8 (*)
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  if (num & 1) {
+    return true;
+  }
+  return false;
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
-
+  if (num & 1) {
+    return false;
+  } return true;
 }
 
 /** Q10 (*)
@@ -79,6 +137,10 @@ function isEven(num) {
  * Boolean primitives are true and false.
  */
 function booWho(bool) {
+  if (bool === true || bool === false) {
+    return true;
+  }
+  return false;
   // What is the new fad diet for ghost developers? The Boolean.
 }
 
@@ -93,7 +155,19 @@ function booWho(bool) {
  * numbers less than 10 are 1, 1, 3, and 5
  */
 function sumFibs(num) {
-
+  var a = 1;
+  var b = 1;
+  var sum = a + b;
+  var c;
+  while (b <= num) {
+    c = b;
+    b = a + b;
+    a = c;
+    if (b <= num && b % 2 === 1) {
+      sum += b;
+    }
+  }
+  return sum;
 }
 
 /** Q12 (*)
@@ -104,14 +178,35 @@ function sumFibs(num) {
  * The provided number may not be a prime.
  */
 function sumPrimes(num) {
+  var sum = 2;
+  var i;
+  var j;
+  var isPrime;
 
+  for (i = 3; i <= num; i += 2) {
+    j = 3;
+    isPrime = true;
+    while (j <= i / 2) {
+      if (i % j === 0) {
+        isPrime = false;
+      }
+      j += 2;
+    }
+    if (isPrime) {
+      sum += i;
+    }
+  }
+  return sum;
 }
 
 /** Q13 (*)
  * Return the length of diagonal, given the length of sides of rectangle
  */
 function rectangleDiagonal(length, height) {
-
+  var diagonal;
+  var x = (length * length) + (height * height);
+  diagonal = Math.sqrt(x);
+  return diagonal;
 }
 
 module.exports = {
