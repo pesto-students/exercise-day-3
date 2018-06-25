@@ -55,11 +55,12 @@ function isTriangle(a, b, c) {
 // The returned function should only allow `cb` to be invoked `n` times.
 function limitFunctionCallCount(cb, n) {
   let count = n;
-  return () => {
-    while (count <= 0) {
+  return (...args) => {
+    if (count > 0) {
       count -= 1;
-      cb();
+      return cb(...args);
     }
+    return null;
   };
 }
 
@@ -71,13 +72,15 @@ function limitFunctionCallCount(cb, n) {
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
 function cacheFunction(cb) {
-  const cbParams = [];
-  if (cb) {
-    return () => {
-      const func = cb;
-    };
-  }
-  return () => {};
+  const cbParams = new Map();
+  return (param) => {
+    if (cbParams.has(param)) {
+      return cbParams.get(param);
+    }
+    const answer = cb(param);
+    cbParams.set(param);
+    return answer;
+  };
 }
 
 /** Q7 (*)
@@ -89,20 +92,13 @@ function cacheFunction(cb) {
  */
 function applyOperator(operator, ...operands) {
   if (operands.length === 0) return 0;
-  return operands.reduce((acc, operand) => {
-    switch (operator) {
-      case '+':
-        return acc + operand;
-      case '-':
-        return acc - operand;
-      case '*':
-        return acc * operand;
-      case '/':
-        return acc / operand;
-      default:
-        return acc;
+  const operatorsApplied = operands.reduce((acc, operand, index) => {
+    if (index === 0 && ((operator === '*') || (operator === '/') || (operator === '%'))) {
+      return acc.concat(`${operand}`);
     }
-  });
+    return acc.concat(`${operator}${operand}`);
+  }, '');
+  return eval(operatorsApplied); // eslint-disable-line
 }
 
 /** Q8 (*)
@@ -161,6 +157,7 @@ function getFibonnaciSequence(num) {
   }
   return s;
 }
+
 function sumFibs(num) {
   const fibonacciSequence = getFibonnaciSequence(num).slice(1);
 
