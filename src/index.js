@@ -83,16 +83,12 @@ function limitFunctionCallCount(cb, invokeCount) {
 function cacheFunction(cb) {
   const cache = new Map();
   function innerFunc(...args) {
-    const argsKey = args.join('-');
-    console.log(args, arguments, argsKey, cache);/* eslint-disable-line */
+    const argsKey = args.join('');
     if (cache.has(argsKey)) return cache.get(argsKey);
-
     const answer = cb(...args);
-    console.log(answer);
     cache.set(argsKey, answer);
     return answer;
   }
-  console.log(cache);
   return innerFunc;
 }
 
@@ -103,8 +99,18 @@ function cacheFunction(cb) {
  * Example: applyOperator('+', 1,2,3,4,5) => 15
  *
  */
-function applyOperator() {
-
+function applyOperator(operator, ...operand) {
+  if (!operand.length) {
+    return 0;
+  }
+  let exp = operand.reduce((acc, val) => `${acc}${operator}${val}`, '');
+  console.log(exp);
+  if (operator !== '+' && operator !== '-') {
+    exp = exp.slice(1);
+  }
+  console.log(exp);
+  const result = eval(exp); /* eslint-disable-line */
+  return result;
 }
 
 /** Q8 (*)
