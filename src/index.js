@@ -61,12 +61,12 @@ function isTriangle(a, b, c) {
 // Q5 (*)
 // Should return a function that invokes `cb`.
 // The returned function should only allow `cb` to be invoked `n` times.
-function limitFunctionCallCount(cb) {
+function limitFunctionCallCount(cb, invokeCount) {
   var count = 0;
-  function callCount(n) {
-    if (count < n) {
+  function callCount(...args) {
+    if (count < invokeCount) {
       count += 1;
-      return cb();
+      return cb(...args);
     }
     return null;
   }
@@ -81,15 +81,16 @@ function limitFunctionCallCount(cb) {
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
 function cacheFunction(cb) {
-  const cache = [];
-  function innerFunc(n) {
-    if (!cache.includes(n)) {
-      const answer = cb(n);
-      cache.push(answer);
-      return answer;
-    }
-    const index = cache.indexOf(n);
-    return cache[index];
+  const cache = new Map();
+  function innerFunc(...args) {
+    const argsKey = args.join('-');
+    console.log(args, arguments, argsKey, cache);/* eslint-disable-line */
+    if (cache.has(argsKey)) return cache.get(argsKey);
+
+    const answer = cb(...args);
+    console.log(answer);
+    cache.set(argsKey, answer);
+    return answer;
   }
   console.log(cache);
   return innerFunc;
