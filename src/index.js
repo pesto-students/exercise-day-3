@@ -176,6 +176,18 @@ function sumAll(arr) {
  */
 function diffArray(arr1, arr2) {
   // Same, same; but different.
+  const ret = [];
+
+  // eslint-disable-next-line
+  arr1.forEach(elem => {
+    if (arr2.indexOf(elem) === -1) ret.push(elem);
+  });
+
+  // eslint-disable-next-line
+  arr2.forEach(elem => {
+    if (arr1.indexOf(elem) === -1) ret.push(elem);
+  });
+  return ret;
 }
 
 /**
