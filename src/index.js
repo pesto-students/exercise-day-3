@@ -4,7 +4,15 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
+  let fact = 1;
 
+  while (num !== 0) {
+    fact *= num;
+    // eslint-disable-next-line
+    num -= 1;
+  }
+
+  return fact;
 }
 
 /** Q2 (*)
@@ -14,7 +22,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  let counterNum = 0;
+  return function counterNumber() {
+    counterNum += 1;
+    return counterNum;
+  };
 }
 
 // Q3 (*)
@@ -22,13 +34,23 @@ function counter() {
 // `increment` should increment a counter variable in closure scope and return it.
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
-
+  let num = 0;
+  return {
+    increment() {
+      num += 1;
+      return num;
+    },
+    decrement() {
+      num -= 1;
+      return num;
+    },
+  };
 }
 
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  return (a + b > c) && (b + c > a) && (a + c > b);
 }
 
 // Q5 (*)
@@ -64,14 +86,14 @@ function applyOperator() {
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  return num % 2 !== 0;
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
-
+  return num % 2 === 0;
 }
 
 /** Q10 (*)
@@ -79,7 +101,7 @@ function isEven(num) {
  * Boolean primitives are true and false.
  */
 function booWho(bool) {
-  // What is the new fad diet for ghost developers? The Boolean.
+  return typeof bool === 'boolean';
 }
 
 /** Q11 (*)
@@ -103,15 +125,33 @@ function sumFibs(num) {
  * number because it's only divisible by one and two.
  * The provided number may not be a prime.
  */
-function sumPrimes(num) {
+function isPrime(num) {
+  // eslint-disable-next-line
+  for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return num !== 1;
+}
 
+function sumPrimes(num) {
+  let sum = 0;
+  while (num !== 0) {
+    if (isPrime(num)) {
+      sum += num;
+    }
+    // eslint-disable-next-line
+    num -= 1;
+  }
+  return sum;
 }
 
 /** Q13 (*)
  * Return the length of diagonal, given the length of sides of rectangle
  */
 function rectangleDiagonal(length, height) {
-
+  return Math.sqrt((length * length) + (height * height));
 }
 
 module.exports = {
