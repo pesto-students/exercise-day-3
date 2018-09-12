@@ -18,7 +18,11 @@ function reverseString(string) {
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  // eslint-disable-next-line
+  let binStr = str.split(' ').map(function (bin) {
+    return String.fromCharCode(parseInt(bin, 2));
+  });
+  return binStr.join('');
 }
 
 /** (*)
