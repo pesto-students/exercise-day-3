@@ -9,6 +9,7 @@
     console.log(y);
   ```
 
+
 2) Assuming obj is an “empty” object in scope, say:
   ```js
     var obj = {};
@@ -19,6 +20,10 @@
       obj[k] = undefined;
     });
   ```
+  ##  {
+    JS: undefined,
+    C++: undefined,
+  }
 
 3) What will the code below output to the console and why?
   ```js
@@ -44,8 +49,10 @@
     }
     outer();
   ```
+  ## 3
 
 5) What will the following code output and why?
   ```js
     console.log(typeof typeof 1);
   ```
+  ## string

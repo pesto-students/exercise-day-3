@@ -4,7 +4,13 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-
+  if (num > 0) {
+    return num * factorial(num - 1);
+  }
+  if (num === 0) {
+    return 1;
+  }
+  return null;
 }
 
 /** Q2 (*)
@@ -56,22 +62,111 @@ function cacheFunction(cb) {
  * Example: applyOperator('+', 1,2,3,4,5) => 15
  *
  */
-function applyOperator() {
 
+// eslint-disable-next-line
+function applyOperator() {
+  function doSum(args) {
+    let sum = 0;
+    let i = 1;
+    // eslint-disable-next-line
+    for (i = 1; i < args.length; i++) {
+      sum += args[i];
+    }
+    return sum;
+  }
+  function doSub(args) {
+    let sub = args[1] - args[2];
+    let i = 1;
+    // eslint-disable-next-line
+    for (i = 1; i < args.length; i++) {
+      sub -= args[i];
+    }
+    return sub;
+  }
+  function doMul(args) {
+    let mul = 1;
+    let i = 1;
+    // eslint-disable-next-line
+    for (i = 1; i < args.length; i++) {
+      mul *= args[i];
+    }
+    return mul;
+  }
+  function doDiv(args) {
+    let div = args[1] / args[2];
+    let i = 1;
+    // eslint-disable-next-line
+    for (i = 3; i < args.length; i++) {
+      div /= args[i];
+    }
+    return div;
+  }
+  function doMod(args) {
+    let mod = args[1] % args[2];
+    let i = 1;
+    // eslint-disable-next-line
+    for (i = 1; i < args.length; i++) {
+      mod %= args[i];
+    }
+    return mod;
+  }
+  if (arguments.length === 1) {
+    return 0;
+  }
+  // eslint-disable-next-line
+  switch (arguments[0]) {
+    case '+':
+      // eslint-disable-next-line
+      return doSum(arguments);
+      // eslint-disable-next-line
+      break;
+    case '-':
+      // eslint-disable-next-line
+      console.log(doSub(arguments));
+      break;
+    case '*':
+      // eslint-disable-next-line
+      return doMul(arguments);
+      // eslint-disable-next-line
+      break;
+    case '/':
+      // eslint-disable-next-line
+      return doDiv(arguments);
+      // eslint-disable-next-line
+      break;
+    case '%':
+      // eslint-disable-next-line
+      return doMod(arguments);
+      // eslint-disable-next-line
+      break;
+    default:
+      // eslint-disable-next-line
+      throw new Error;
+      // eslint-disable-next-line
+      break;
+  }
 }
 
 /** Q8 (*)
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  // eslint-disable-next-line
+  if ((num & 1)) {
+    return true;
+  }
+  return false;
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
-
+  // eslint-disable-next-line
+  if (!(num & 1)) {
+    return true;
+  }
+  return false;
 }
 
 /** Q10 (*)
