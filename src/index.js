@@ -128,7 +128,14 @@ function getIndexToIns(arr, num) {
  * is not a positive number.
  */
 function repeatStringNumTimes(str, num) {
-  // repeat after me
+  let newStr = '';
+  if (num > 0) {
+    let index;
+    for (index = 0; index < num; index += 1) {
+      newStr += str;
+    }
+  }
+  return newStr;
 }
 
 /** (*)
