@@ -22,7 +22,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  let counterNum = 0;
+  return function counterNumber() {
+    counterNum += 1;
+    return counterNum;
+  };
 }
 
 // Q3 (*)
