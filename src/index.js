@@ -4,7 +4,7 @@
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  return string.split('').reverse().join('');
 }
 
 /** (*)
@@ -20,6 +20,13 @@ function binaryAgent(str) {
  */
 function isPalindrome(string) {
   // Was it a car or a cat I saw
+  let str = string.toString().toLowerCase().replace(/[^A-Za-z0-9]/g, '');
+  str = str.replace(/\s/g, '');
+  const rev = str.split('').reverse().join('');
+  if (rev === str) {
+    return true;
+  }
+  return false;
 }
 
 /** (*)
@@ -90,6 +97,27 @@ function largestOfFour(arr) {
  */
 function getIndexToIns(arr, num) {
   // Find my place in this sorted array.
+  let i = 0;
+  // eslint-disable-next-line
+  if(num<arr[0]) {
+    return 0;
+  // eslint-disable-next-line
+  } 
+  // eslint-disable-next-line
+  else if(num>arr[arr.length-1]) {
+    return arr.length;
+  // eslint-disable-next-line
+  }
+  // eslint-disable-next-line
+  else{
+  // eslint-disable-next-line
+    for(i=0;i<arr.length-1;i++){
+      // eslint-disable-next-line
+      if(arr[i]<num && arr[i+1]>num)
+        break;
+    }
+    return i;
+  }
 }
 
 /** (*)
@@ -114,7 +142,26 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
-
+  let s;
+  let l;
+  let sum = 0;
+  // eslint-disable-next-line
+  if(arr[0]<arr[1]) {
+    // eslint-disable-next-line
+    s = arr[0];
+    // eslint-disable-next-line
+    l = arr[1];
+    // eslint-disable-next-line
+  }else {
+    // eslint-disable-next-line
+    s = arr[1];
+    // eslint-disable-next-line
+    l = arr[0];
+  }
+  for (; s < l; s += 1) {
+    sum += s;
+  }
+  return sum;
 }
 
 /** (*)
