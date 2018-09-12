@@ -151,7 +151,16 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
+  let index = arr[0] > arr[1] ? arr[1] : arr[0];
+  const limit = arr[0] > arr[1] ? arr[0] : arr[1];
 
+  let sum = 0;
+
+  for (; index <= limit; index += 1) {
+    sum += index;
+  }
+
+  return sum;
 }
 
 /** (*)
