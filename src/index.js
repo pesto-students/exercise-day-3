@@ -45,7 +45,7 @@ function isPalindrome(string) {
 * Return the longest word in a string
 */
 function longestWordInString(string) {
-
+  return Math.max.apply(null, string.split(' ').map(s => s.length));
 }
 
 /**
