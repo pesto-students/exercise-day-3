@@ -4,7 +4,12 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
-
+  // eslint-disable-next-line no-console
+  if (num === 0 || num === 1) {
+    return 1;
+  }
+  // eslint-disable-next-line no-console
+  return num * factorial(num - 1);
 }
 
 /** Q2 (*)
@@ -14,7 +19,10 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+  let count = 1;
+  return () => {
+    count += 1;
+  };
 }
 
 // Q3 (*)
@@ -23,12 +31,34 @@ function counter() {
 // `decrement` should decrement the counter variable and return it.
 function counterFactory() {
 
+  // let o = {
+  //   counter: function counter(val) {
+  //       let count = 1;
+  //       return () => {
+  //           if(val==='i'){
+  //               return count++;
+  //           }
+  //           else {
+  //               return count--;
+  //           }
+  //       }
+  //  },
+  //  increment: ()  => {
+  //    counter('i');
+  //  },
+  //  decrement: () => {
+  //    counter('d');
+  //  },
+
 }
 
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  if (a + b > c && a + c > b && b + c > a) {
+    return true;
+  }
+  return false;
 }
 
 // Q5 (*)
@@ -64,22 +94,38 @@ function applyOperator() {
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  let res = 0;
+  res = num / 2;
+  if (Math.round(res) !== res) {
+    return true;
+  }
+  return false;
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
-
+  let res = 0;
+  res = num / 2;
+  if (Math.round(res) === res) {
+    return true;
+  }
+  return false;
 }
 
 /** Q10 (*)
  * Check if a value is classified as a boolean primitive. Return true or false.
  * Boolean primitives are true and false.
  */
+
 function booWho(bool) {
   // What is the new fad diet for ghost developers? The Boolean.
+  // eslint-disable-next-line no-console
+  if (bool === true || bool === false) {
+    return true;
+  }
+  return false;
 }
 
 /** Q11 (*)
