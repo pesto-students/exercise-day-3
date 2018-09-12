@@ -64,8 +64,7 @@ function longestWordInString(string) {
  * number; otherwise return false.
  */
 function telephoneCheck(str) {
-  // Good luck!
-  return true;
+
 }
 
 /** (*)
@@ -178,7 +177,18 @@ function sumAll(arr) {
  * the symmetric difference of the two arrays.
  */
 function diffArray(arr1, arr2) {
-  // Same, same; but different.
+  const diffArr = [];
+  // eslint-disable-next-line
+  arr1.forEach(element => {
+    const index = arr2.indexOf(element);
+    if (index === -1) {
+      diffArr.push(element);
+    } else {
+      arr2.splice(index, 1);
+    }
+  });
+
+  return [...diffArr, ...arr2];
 }
 
 /**
