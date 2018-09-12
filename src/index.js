@@ -143,6 +143,9 @@ function getIndexToIns(arr, num) {
  */
 function repeatStringNumTimes(str, num) {
   // repeat after me
+  let ret = '';
+  for (let i = 0; i < num; i += 1) ret += str;
+  return ret;
 }
 
 /** (*)
@@ -150,6 +153,7 @@ function repeatStringNumTimes(str, num) {
  */
 function bouncer(arr) {
   // Don't show a false ID to this bouncer.
+  return arr.filter(elem => !!elem);
 }
 
 /** (*)
