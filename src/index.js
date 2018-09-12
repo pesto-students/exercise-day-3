@@ -4,7 +4,15 @@
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
 function factorial(num) {
+  let fact = 1;
 
+  while (num !== 0) {
+    fact *= num;
+    // eslint-disable-next-line
+    num -= 1;
+  }
+
+  return fact;
 }
 
 /** Q2 (*)
