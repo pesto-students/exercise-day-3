@@ -76,9 +76,21 @@ function telephoneCheck(str) {
  * character (i.e. spaces, punctuation), but do pass them on.
  */
 function rot13(str) {
-  // LBH QVQ VG!
-}
+  let decodedStr = '';
+  let index;
+  const letters = /^[A-Z]+$/;
+  // eslint-disable-next-line
+  for (index = 0; index < str.length; index++) {
+    if (str[index].match(letters)) {
+      const charCode = str[index].charCodeAt(0) - 13;
+      decodedStr += String.fromCharCode(charCode < 65 ? (90 + (charCode - 64)) : charCode);
+    } else {
+      decodedStr += str[index];
+    }
+  }
 
+  return decodedStr;
+}
 
 /** (*)
 * Return an array consisting of the
