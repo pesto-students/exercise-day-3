@@ -36,7 +36,7 @@ function counterFactory() {
 // Q4 (*)
 // Return a true or false for wether a triangle can be formed using the three lines
 function isTriangle(a, b, c) {
-
+  return (a + b > c) && (b + c > a) && (a + c > b);
 }
 
 // Q5 (*)
@@ -111,8 +111,26 @@ function sumFibs(num) {
  * number because it's only divisible by one and two.
  * The provided number may not be a prime.
  */
-function sumPrimes(num) {
+function isPrime(num) {
+  // eslint-disable-next-line
+  for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return num !== 1;
+}
 
+function sumPrimes(num) {
+  let sum = 0;
+  while (num !== 0) {
+    if (isPrime(num)) {
+      sum += num;
+    }
+    // eslint-disable-next-line
+    num -= 1;
+  }
+  return sum;
 }
 
 /** Q13 (*)
