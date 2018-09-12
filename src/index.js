@@ -1,10 +1,17 @@
 /* eslint-disable no-unused-vars */
-
+/* eslint-disable */
 /** Q1 (*)
  * Read this for factorial: https://en.wikipedia.org/wiki/Factorial
  */
-function factorial(num) {
 
+ // disable-eslint
+
+function factorial(num) {
+  let fact = 1;
+  for (let i = 1; i <= num; i++){
+    fact = fact * i;
+  }
+return fact;
 }
 
 /** Q2 (*)
@@ -14,7 +21,11 @@ function factorial(num) {
  * newCounter(); // 2
  */
 function counter() {
-
+ let i = 0;
+ return function add() {
+   i++;
+   return i;
+  }
 }
 
 // Q3 (*)
@@ -104,13 +115,30 @@ function sumFibs(num) {
  * The provided number may not be a prime.
  */
 function sumPrimes(num) {
-
+  let sum=0;
+  for(let i=0;i<=num;i++){
+    let isPrime = false;
+    for(let j=2;j<=i-1;j++){
+      if(i%j === 0){
+        isPrime = false;
+        break;
+      }
+      
+    }
+    if(isPrime === true){
+      sum +=i; 
+    }
+   
+  }
+  return sum;
 }
 
 /** Q13 (*)
  * Return the length of diagonal, given the length of sides of rectangle
  */
 function rectangleDiagonal(length, height) {
+  let diag = Math.sqrt((length*length)+ (height*height));
+  return diag;
 
 }
 
