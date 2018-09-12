@@ -1,10 +1,14 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 
 /** (*)
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  let newStr = '';
+  for(i=string.split('').length-1;i>=0;i--){
+    newStr += string[i];
+  }
+  return newStr;
 }
 
 /** (*)
@@ -20,13 +24,33 @@ function binaryAgent(str) {
  */
 function isPalindrome(string) {
   // Was it a car or a cat I saw
+  let newStr = '';
+  string = string.replace(/ ()_,/g,'');
+  string = string.toLowerCase();
+  for(i=string.split('').length-1;i>=0;i--){
+    newStr += string[i];
+  }
+  if(newStr === string){
+    return true;
+  }else return false;
 }
 
 /** (*)
 * Return the longest word in a string
 */
 function longestWordInString(string) {
-
+  let newString = string.split(" ");
+  let longestWord = 0;  
+  let longestWordInString = '';
+  for(let i=0;i<newString.length;i++){
+    if(newString[i].length > longestWord){
+      longestWord = newString[i].length;
+      longestWordInString = newString[i]  
+    }
+  }
+  console.log(longestWord);
+  console.log(longestWordInString);
+  return longestWord;
 }
 
 /**
