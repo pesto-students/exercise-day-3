@@ -84,6 +84,23 @@ function telephoneCheck(str) {
  */
 function rot13(str) {
   // LBH QVQ VG!
+  let ret = '';
+  const charCodea = 'a'.charCodeAt(0);
+  const charCodeA = 'A'.charCodeAt(0);
+
+  for (let i = 0; i < str.length; i += 1) {
+    if (/[a-z]/.test(str[i])) {
+      // eslint-disable-next-line
+      ret += String.fromCharCode(charCodea + (str[i].charCodeAt(0) - charCodea + 13) % 26);
+    } else if (/[A-Z]/.test(str[i])) {
+      // eslint-disable-next-line
+      ret += String.fromCharCode(charCodeA + (str[i].charCodeAt(0) - charCodeA + 13) % 26);
+    } else {
+      ret += str[i];
+    }
+  }
+
+  return ret;
 }
 
 
