@@ -162,7 +162,11 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
-
+  const low = Math.min.apply(null, arr);
+  const high = Math.max.apply(null, arr);
+  let sum = 0;
+  for (let i = low; i <= high; i += 1) sum += i;
+  return sum;
 }
 
 /** (*)
