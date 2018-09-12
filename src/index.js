@@ -111,7 +111,8 @@ function rot13(str) {
 * array will contain exactly 4 sub-arrays.
 */
 function largestOfFour(arr) {
-
+  function arrMax(array) { return array.reduce((acc, elem) => Math.max(acc, elem), -Infinity); }
+  return [arrMax(arr[0]), arrMax(arr[1]), arrMax(arr[2]), arrMax(arr[3])];
 }
 
 /** (*)
@@ -126,6 +127,13 @@ function largestOfFour(arr) {
  */
 function getIndexToIns(arr, num) {
   // Find my place in this sorted array.
+  const arrCopy = arr.concat([]);
+  arrCopy.sort((a, b) => a - b);
+  if (arrCopy.length === 0) return 0;
+
+  let i;
+  for (i = 0; i < arrCopy.length; i += 1) if (arrCopy[i] >= num) break;
+  return i;
 }
 
 /** (*)
