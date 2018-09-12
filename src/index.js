@@ -72,14 +72,14 @@ function applyOperator() {
  * Do this without using the % operator.
  */
 function isOdd(num) {
-
+  return num % 2 !== 0;
 }
 
 /** Q9 (*)
  * Do this without using the % operator.
  */
 function isEven(num) {
-
+  return num % 2 === 0;
 }
 
 /** Q10 (*)
