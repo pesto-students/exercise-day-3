@@ -32,7 +32,13 @@ function isPalindrome(string) {
 * Return the longest word in a string
 */
 function longestWordInString(string) {
+  const stringArray = string.split(' ');
+  // eslint-disable-next-line
+  let length= stringArray.reduce(function (acc, ele) {
+    return ele.length > acc ? ele.length : acc;
+  }, 0);
 
+  return length;
 }
 
 /**
