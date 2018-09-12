@@ -95,7 +95,13 @@ function largestOfFour(arr) {
  * 19 is less than 20 (index 2) and greater than 5 (index 1).
  */
 function getIndexToIns(arr, num) {
-  // Find my place in this sorted array.
+  arr.sort((a, b) => a - b);
+
+  function cb(arrNum) {
+    return num <= arrNum;
+  }
+  const index = arr.findIndex(cb);
+  return index < 0 ? arr.length : index;
 }
 
 /** (*)
