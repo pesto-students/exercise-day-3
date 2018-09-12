@@ -30,10 +30,14 @@ function isPalindrome(string) {
 }
 
 /** (*)
-* Return the longest word in a string
-*/
+ * Return the longest word in a string
+ */
 function longestWordInString(string) {
-
+  // eslint-disable-next-line
+  const longestWord = string.split(' ').reduce((acc, el) => {
+    return el.length > acc.length ? el : acc;
+  }, '');
+  return longestWord.length;
 }
 
 /**
@@ -76,13 +80,24 @@ function rot13(str) {
 
 
 /** (*)
-* Return an array consisting of the
-* largest number from each provided
-* sub-array. For simplicity, the provided
-* array will contain exactly 4 sub-arrays.
-*/
+ * Return an array consisting of the
+ * largest number from each provided
+ * sub-array. For simplicity, the provided
+ * array will contain exactly 4 sub-arrays.
+ */
 function largestOfFour(arr) {
-
+  // eslint-disable-next-line
+  let newArr = [];
+  for (let i = 0; i < 4; i += 1) {
+    let max = arr[i][0];
+    for (let j = 1; j < 4; j += 1) {
+      if (arr[i][j] > max) {
+        max = arr[i][j];
+      }
+    }
+    newArr.push(max);
+  }
+  return newArr;
 }
 
 /** (*)
@@ -99,21 +114,21 @@ function getIndexToIns(arr, num) {
   // Find my place in this sorted array.
   let i = 0;
   // eslint-disable-next-line
-  if(num<arr[0]) {
+  if (num < arr[0]) {
     return 0;
-  // eslint-disable-next-line
-  } 
-  // eslint-disable-next-line
-  else if(num>arr[arr.length-1]) {
-    return arr.length;
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }
   // eslint-disable-next-line
-  else{
+  else if (num > arr[arr.length - 1]) {
+    return arr.length;
+    // eslint-disable-next-line
+  }
   // eslint-disable-next-line
-    for(i=0;i<arr.length-1;i++){
+  else {
+    // eslint-disable-next-line
+    for (i = 0; i < arr.length - 1; i++) {
       // eslint-disable-next-line
-      if(arr[i]<num && arr[i+1]>num)
+      if (arr[i] < num && arr[i + 1] > num)
         break;
     }
     return i;
@@ -146,19 +161,19 @@ function sumAll(arr) {
   let l;
   let sum = 0;
   // eslint-disable-next-line
-  if(arr[0]<arr[1]) {
+  if (arr[0] < arr[1]) {
     // eslint-disable-next-line
     s = arr[0];
     // eslint-disable-next-line
     l = arr[1];
     // eslint-disable-next-line
-  }else {
+  } else {
     // eslint-disable-next-line
     s = arr[1];
     // eslint-disable-next-line
     l = arr[0];
   }
-  for (; s < l; s += 1) {
+  for (; s <= l; s += 1) {
     sum += s;
   }
   return sum;
