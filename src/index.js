@@ -22,6 +22,23 @@ function binaryAgent(str) {
  */
 function isPalindrome(string) {
   // Was it a car or a cat I saw
+  let ps = string; // ps reads as 'processedString'
+
+  if (typeof string === 'number') ps = `${string}`;
+
+  function removeNonAlnumChars(s) {
+    let ret = '';
+    for (let i = 0; i < s.length; i += 1) if (/[A-Za-z0-9]/.test(s[i])) ret += s[i];
+    return ret;
+  }
+
+  ps = removeNonAlnumChars(ps);
+  for (let i = 0; i < ps.length / 2; i += 1) {
+    if (ps[i].toLowerCase() !== ps[ps.length - 1 - i].toLowerCase()) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /** (*)
