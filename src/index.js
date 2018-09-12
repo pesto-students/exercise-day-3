@@ -137,7 +137,7 @@ function sumPrimes(num) {
  * Return the length of diagonal, given the length of sides of rectangle
  */
 function rectangleDiagonal(length, height) {
-
+  return Math.sqrt((length * length) + (height * height));
 }
 
 module.exports = {
