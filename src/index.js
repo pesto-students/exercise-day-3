@@ -111,8 +111,8 @@ function rot13(str) {
 * array will contain exactly 4 sub-arrays.
 */
 function largestOfFour(arr) {
-  function arrMax(array) { return array.reduce((acc, elem) => Math.max(acc, elem), -Infinity); }
-  return [arrMax(arr[0]), arrMax(arr[1]), arrMax(arr[2]), arrMax(arr[3])];
+  // eslint-disable-next-line
+  return arr.map(subArrOrNum => Array.isArray(subArrOrNum) ? Math.max.apply(null, subArrOrNum) : subArrOrNum);
 }
 
 /** (*)
