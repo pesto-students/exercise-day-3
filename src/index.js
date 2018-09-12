@@ -4,7 +4,13 @@
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  let reverseStr = '';
+  let index;
+  // eslint-disable-next-line
+  for (index = string.length - 1; index >= 0; index--) {
+    reverseStr += string[index];
+  }
+  return reverseStr;
 }
 
 /** (*)
