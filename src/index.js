@@ -142,7 +142,12 @@ function repeatStringNumTimes(str, num) {
  * Remove all falsy values from an array.
  */
 function bouncer(arr) {
-  // Don't show a false ID to this bouncer.
+  // eslint-disable-next-line
+  let bounceArr = arr.filter(function bounceFalsy(val) {
+    return val;
+  });
+
+  return bounceArr;
 }
 
 /** (*)
