@@ -203,8 +203,17 @@ function convertToRoman(num) {
  * Flatten a nested array. You must account for varying levels of nesting.
  */
 function steamrollArray(arr) {
-  // I'm a steamroller, baby
-  return arr;
+  let flatArray = [];
+
+  arr.forEach((val) => {
+    if (Array.isArray(val)) {
+      flatArray = [...flatArray, ...steamrollArray(val)];
+    } else {
+      flatArray.push(val);
+    }
+  });
+
+  return flatArray;
 }
 
 /** (*)
