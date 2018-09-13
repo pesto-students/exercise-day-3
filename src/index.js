@@ -4,7 +4,9 @@
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  let reversed = '';
+  for (let i = string.length - 1; i >= 0; i -= 1) reversed += string[i];
+  return reversed;
 }
 
 /** (*)
@@ -20,13 +22,30 @@ function binaryAgent(str) {
  */
 function isPalindrome(string) {
   // Was it a car or a cat I saw
+  let ps = string; // ps reads as 'processedString'
+
+  if (typeof string === 'number') ps = `${string}`;
+
+  function removeNonAlnumChars(s) {
+    let ret = '';
+    for (let i = 0; i < s.length; i += 1) if (/[A-Za-z0-9]/.test(s[i])) ret += s[i];
+    return ret;
+  }
+
+  ps = removeNonAlnumChars(ps);
+  for (let i = 0; i < ps.length / 2; i += 1) {
+    if (ps[i].toLowerCase() !== ps[ps.length - 1 - i].toLowerCase()) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /** (*)
 * Return the longest word in a string
 */
 function longestWordInString(string) {
-
+  return Math.max.apply(null, string.split(' ').map(s => s.length));
 }
 
 /**
@@ -65,6 +84,23 @@ function telephoneCheck(str) {
  */
 function rot13(str) {
   // LBH QVQ VG!
+  let ret = '';
+  const charCodea = 'a'.charCodeAt(0);
+  const charCodeA = 'A'.charCodeAt(0);
+
+  for (let i = 0; i < str.length; i += 1) {
+    if (/[a-z]/.test(str[i])) {
+      // eslint-disable-next-line
+      ret += String.fromCharCode(charCodea + (str[i].charCodeAt(0) - charCodea + 13) % 26);
+    } else if (/[A-Z]/.test(str[i])) {
+      // eslint-disable-next-line
+      ret += String.fromCharCode(charCodeA + (str[i].charCodeAt(0) - charCodeA + 13) % 26);
+    } else {
+      ret += str[i];
+    }
+  }
+
+  return ret;
 }
 
 
@@ -75,7 +111,8 @@ function rot13(str) {
 * array will contain exactly 4 sub-arrays.
 */
 function largestOfFour(arr) {
-
+  // eslint-disable-next-line
+  return arr.map(subArrOrNum => Array.isArray(subArrOrNum) ? Math.max.apply(null, subArrOrNum) : subArrOrNum);
 }
 
 /** (*)
@@ -90,6 +127,13 @@ function largestOfFour(arr) {
  */
 function getIndexToIns(arr, num) {
   // Find my place in this sorted array.
+  const arrCopy = arr.concat([]);
+  arrCopy.sort((a, b) => a - b);
+  if (arrCopy.length === 0) return 0;
+
+  let i;
+  for (i = 0; i < arrCopy.length; i += 1) if (arrCopy[i] >= num) break;
+  return i;
 }
 
 /** (*)
@@ -99,6 +143,9 @@ function getIndexToIns(arr, num) {
  */
 function repeatStringNumTimes(str, num) {
   // repeat after me
+  let ret = '';
+  for (let i = 0; i < num; i += 1) ret += str;
+  return ret;
 }
 
 /** (*)
@@ -106,6 +153,7 @@ function repeatStringNumTimes(str, num) {
  */
 function bouncer(arr) {
   // Don't show a false ID to this bouncer.
+  return arr.filter(elem => !!elem);
 }
 
 /** (*)
@@ -114,7 +162,11 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
-
+  const low = Math.min.apply(null, arr);
+  const high = Math.max.apply(null, arr);
+  let sum = 0;
+  for (let i = low; i <= high; i += 1) sum += i;
+  return sum;
 }
 
 /** (*)
@@ -124,6 +176,18 @@ function sumAll(arr) {
  */
 function diffArray(arr1, arr2) {
   // Same, same; but different.
+  const ret = [];
+
+  // eslint-disable-next-line
+  arr1.forEach(elem => {
+    if (arr2.indexOf(elem) === -1) ret.push(elem);
+  });
+
+  // eslint-disable-next-line
+  arr2.forEach(elem => {
+    if (arr1.indexOf(elem) === -1) ret.push(elem);
+  });
+  return ret;
 }
 
 /**
@@ -139,7 +203,10 @@ function convertToRoman(num) {
  */
 function steamrollArray(arr) {
   // I'm a steamroller, baby
-  return arr;
+  if (Array.isArray(arr)) {
+    return arr.length === 0 ? [] : steamrollArray(arr[0]).concat(steamrollArray(arr.slice(1)));
+  }
+  return [arr];
 }
 
 /** (*)
@@ -158,7 +225,18 @@ function steamrollArray(arr) {
  * 3 + 3 = 6 → Return 6
  */
 function pairwise(arr, arg) {
-  return arg;
+  const used = [];
+  let sum = 0;
+  for (let i = 0; i < arr.length - 1; i += 1) {
+    for (let j = i + 1; j < arr.length; j += 1) {
+      if (arr[i] + arr[j] === arg && used.indexOf(arr[i]) === -1 && used.indexOf(arr[j]) === -1) {
+        used.push(arr[i]);
+        used.push(arr[j]);
+        sum += i + j;
+      }
+    }
+  }
+  return sum;
 }
 
 module.exports = {
@@ -176,4 +254,5 @@ module.exports = {
   convertToRoman,
   largestOfFour,
   steamrollArray,
+  pairwise,
 };
