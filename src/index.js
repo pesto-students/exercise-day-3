@@ -203,7 +203,10 @@ function convertToRoman(num) {
  */
 function steamrollArray(arr) {
   // I'm a steamroller, baby
-  return arr;
+  if (Array.isArray(arr)) {
+    return arr.length === 0 ? [] : steamrollArray(arr[0]).concat(steamrollArray(arr.slice(1)));
+  }
+  return [arr];
 }
 
 /** (*)
@@ -222,7 +225,18 @@ function steamrollArray(arr) {
  * 3 + 3 = 6 → Return 6
  */
 function pairwise(arr, arg) {
-  return arg;
+  const used = [];
+  let sum = 0;
+  for (let i = 0; i < arr.length - 1; i += 1) {
+    for (let j = i + 1; j < arr.length; j += 1) {
+      if (arr[i] + arr[j] === arg && used.indexOf(arr[i]) === -1 && used.indexOf(arr[j]) === -1) {
+        used.push(arr[i]);
+        used.push(arr[j]);
+        sum += i + j;
+      }
+    }
+  }
+  return sum;
 }
 
 module.exports = {
@@ -240,4 +254,5 @@ module.exports = {
   convertToRoman,
   largestOfFour,
   steamrollArray,
+  pairwise,
 };
