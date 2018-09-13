@@ -1,10 +1,14 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 
 /** (*)
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  let newStr = '';
+  for(i=string.split('').length-1;i>=0;i--){
+    newStr += string[i];
+  }
+  return newStr;
 }
 
 /** (*)
@@ -12,7 +16,13 @@ function reverseString(string) {
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  
+  str = str.replace(/ /g,'');
+  let splitStr = str.split('');
+  splitStr.forEach(el=>{
+    result += String.fromCharCode(parseInt(el, 2));
+  })
+  return result;
 }
 
 /** (*)
@@ -20,13 +30,61 @@ function binaryAgent(str) {
  */
 function isPalindrome(string) {
   // Was it a car or a cat I saw
+  if(typeof(string)=== "string"){
+    let newStr = '';
+  string = string.replace(/ /g,'');
+  string = string.replace(/_/g,'');
+  string = string.replace(/[,\/]/g,'');
+  string = string.replace(/[.\/]/g,'');
+  string = string.replace(/[()]/g,'');
+string = string.replace(/-/g,'');
+  string = string.toLowerCase();
+  for(i=string.split('').length-1;i>=0;i--){
+    newStr += string[i];
+  }
+console.log(string);
+console.log(newStr);
+  if(newStr === string){
+    return true;
+  }else return false;
+  }
+  else if(typeof(string) === "number"){
+    let rem=0,res=0,temp;
+    temp = string;
+    while(string > 0){
+      rem = string%10;
+      res = res*10 + rem;
+       string = Math.floor(string/10);
 }
+console.log(string);
+console.log(res);
+     
+      if(res === temp)
+      return true;
+      else return false;
+    }
+    
+  }
+  
+  
+
 
 /** (*)
 * Return the longest word in a string
 */
 function longestWordInString(string) {
-
+  let newString = string.split(" ");
+  let longestWord = 0;  
+  let longestWordInString = '';
+  for(let i=0;i<newString.length;i++){
+    if(newString[i].length > longestWord){
+      longestWord = newString[i].length;
+      longestWordInString = newString[i]  
+    }
+  }
+  console.log(longestWord);
+  console.log(longestWordInString);
+  return longestWord;
 }
 
 /**
@@ -114,7 +172,28 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
-
+  let sum = 0;
+  let first ;
+  let last ;
+  let sumAll = 0;
+  for(let i=0;i<arr.length;i++){
+    sum += arr[i];
+  }
+  if(arr[0] > arr[1]){
+    first = arr[1];
+    last = arr[0];
+    for(let j=first;j<=last;j++){
+      sumAll += j;
+    }
+  }else{
+    first = arr[0];
+    last = arr[1];
+    for(let j=first;j<=last;j++){
+      sumAll += j;
+    }
+  }
+  
+  return sumAll;
 }
 
 /** (*)
@@ -123,6 +202,15 @@ function sumAll(arr) {
  * the symmetric difference of the two arrays.
  */
 function diffArray(arr1, arr2) {
+  let arr3 = [];
+  arr1.forEach(el1=>{
+    arr2.forEach(el2=>{
+      if(el1===el2){
+        arr3.push(el1);
+      }
+    })
+  })
+  return arr3;
   // Same, same; but different.
 }
 
