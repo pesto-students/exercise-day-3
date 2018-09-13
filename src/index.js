@@ -4,7 +4,13 @@
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  let reverseStr = '';
+  let index;
+  // eslint-disable-next-line
+  for (index = string.length - 1; index >= 0; index--) {
+    reverseStr += string[index];
+  }
+  return reverseStr;
 }
 
 /** (*)
@@ -12,7 +18,11 @@ function reverseString(string) {
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  // eslint-disable-next-line
+  let binStr = str.split(' ').map(function (bin) {
+    return String.fromCharCode(parseInt(bin, 2));
+  });
+  return binStr.join('');
 }
 
 /** (*)
@@ -26,7 +36,13 @@ function isPalindrome(string) {
 * Return the longest word in a string
 */
 function longestWordInString(string) {
+  const stringArray = string.split(' ');
+  // eslint-disable-next-line
+  let length= stringArray.reduce(function (acc, ele) {
+    return ele.length > acc ? ele.length : acc;
+  }, 0);
 
+  return length;
 }
 
 /**
@@ -48,8 +64,7 @@ function longestWordInString(string) {
  * number; otherwise return false.
  */
 function telephoneCheck(str) {
-  // Good luck!
-  return true;
+
 }
 
 /** (*)
@@ -64,9 +79,21 @@ function telephoneCheck(str) {
  * character (i.e. spaces, punctuation), but do pass them on.
  */
 function rot13(str) {
-  // LBH QVQ VG!
-}
+  let decodedStr = '';
+  let index;
+  const letters = /^[A-Z]+$/;
+  // eslint-disable-next-line
+  for (index = 0; index < str.length; index++) {
+    if (str[index].match(letters)) {
+      const charCode = str[index].charCodeAt(0) - 13;
+      decodedStr += String.fromCharCode(charCode < 65 ? (90 + (charCode - 64)) : charCode);
+    } else {
+      decodedStr += str[index];
+    }
+  }
 
+  return decodedStr;
+}
 
 /** (*)
 * Return an array consisting of the
@@ -89,7 +116,13 @@ function largestOfFour(arr) {
  * 19 is less than 20 (index 2) and greater than 5 (index 1).
  */
 function getIndexToIns(arr, num) {
-  // Find my place in this sorted array.
+  arr.sort((a, b) => a - b);
+
+  function cb(arrNum) {
+    return num <= arrNum;
+  }
+  const index = arr.findIndex(cb);
+  return index < 0 ? arr.length : index;
 }
 
 /** (*)
@@ -98,14 +131,26 @@ function getIndexToIns(arr, num) {
  * is not a positive number.
  */
 function repeatStringNumTimes(str, num) {
-  // repeat after me
+  let newStr = '';
+  if (num > 0) {
+    let index;
+    for (index = 0; index < num; index += 1) {
+      newStr += str;
+    }
+  }
+  return newStr;
 }
 
 /** (*)
  * Remove all falsy values from an array.
  */
 function bouncer(arr) {
-  // Don't show a false ID to this bouncer.
+  // eslint-disable-next-line
+  let bounceArr = arr.filter(function bounceFalsy(val) {
+    return val;
+  });
+
+  return bounceArr;
 }
 
 /** (*)
@@ -114,7 +159,16 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
+  let index = arr[0] > arr[1] ? arr[1] : arr[0];
+  const limit = arr[0] > arr[1] ? arr[0] : arr[1];
 
+  let sum = 0;
+
+  for (; index <= limit; index += 1) {
+    sum += index;
+  }
+
+  return sum;
 }
 
 /** (*)
@@ -123,7 +177,18 @@ function sumAll(arr) {
  * the symmetric difference of the two arrays.
  */
 function diffArray(arr1, arr2) {
-  // Same, same; but different.
+  const diffArr = [];
+  // eslint-disable-next-line
+  arr1.forEach(element => {
+    const index = arr2.indexOf(element);
+    if (index === -1) {
+      diffArr.push(element);
+    } else {
+      arr2.splice(index, 1);
+    }
+  });
+
+  return [...diffArr, ...arr2];
 }
 
 /**
@@ -138,8 +203,17 @@ function convertToRoman(num) {
  * Flatten a nested array. You must account for varying levels of nesting.
  */
 function steamrollArray(arr) {
-  // I'm a steamroller, baby
-  return arr;
+  let flatArray = [];
+
+  arr.forEach((val) => {
+    if (Array.isArray(val)) {
+      flatArray = [...flatArray, ...steamrollArray(val)];
+    } else {
+      flatArray.push(val);
+    }
+  });
+
+  return flatArray;
 }
 
 /** (*)
