@@ -76,6 +76,22 @@ function telephoneCheck(str) {
  */
 function rot13(str) {
   // LBH QVQ VG!
+  let dec = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const ch = str.charAt(i);
+    if (ch >= 'a' && ch <= 'm') {
+      dec += String.fromCharCode(ch.charCodeAt(0) + 13);
+    } else if (ch >= 'A' && ch <= 'M') {
+      dec += String.fromCharCode(ch.charCodeAt(0) + 13);
+    } else if (ch >= 'n' && ch <= 'z') {
+      dec += String.fromCharCode(ch.charCodeAt(0) - 13);
+    } else if (ch >= 'N' && ch <= 'Z') {
+      dec += String.fromCharCode(ch.charCodeAt(0) - 13);
+    } else {
+      dec += ch;
+    }
+  }
+  return dec;
 }
 
 
@@ -142,6 +158,10 @@ function getIndexToIns(arr, num) {
  */
 function repeatStringNumTimes(str, num) {
   // repeat after me
+  if (num < 0) {
+    return '';
+  }
+  return str.repeat(num);
 }
 
 /** (*)
@@ -149,6 +169,13 @@ function repeatStringNumTimes(str, num) {
  */
 function bouncer(arr) {
   // Don't show a false ID to this bouncer.
+  const sArr = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i] !== '' && arr[i] !== false && !Number.isNaN(arr[i]) && arr[i] !== undefined && arr[i] !== 0 && arr[i] !== null) {
+      sArr.push(arr[i]);
+    }
+  }
+  return sArr;
 }
 
 /** (*)
@@ -157,26 +184,15 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
-  let s;
-  let l;
-  let sum = 0;
+  if (arr[0] > arr[1]) {
+    const temp = arr[0];
+    // eslint-disable-next-line
+    arr[0] = arr[1];
+    // eslint-disable-next-line
+    arr[1] = temp;
+  }
   // eslint-disable-next-line
-  if (arr[0] < arr[1]) {
-    // eslint-disable-next-line
-    s = arr[0];
-    // eslint-disable-next-line
-    l = arr[1];
-    // eslint-disable-next-line
-  } else {
-    // eslint-disable-next-line
-    s = arr[1];
-    // eslint-disable-next-line
-    l = arr[0];
-  }
-  for (; s <= l; s += 1) {
-    sum += s;
-  }
-  return sum;
+  return sum * (arr[1] - arr[0] + 1) / 2;
 }
 
 /** (*)
