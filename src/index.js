@@ -89,7 +89,7 @@ function cacheFunction(cb) {
  */
 
 // eslint-disable-next-line
-function applyOperator() {
+function applyOperator() {        // [check] why this is not working function applyOperator(...arguments)
   function doSum(args) {
     const re = (acc, el) => acc + el;
     return args.reduce(re);
@@ -249,7 +249,7 @@ function sumPrimes(num) {
  */
 function rectangleDiagonal(length, height) {
   // eslint-disable-next-line
-  return Math.pow(((length * length) + (height * height), 0.5));
+  return Math.pow(((length * length) + (height * height)), 0.5);
 }
 
 module.exports = {

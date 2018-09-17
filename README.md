@@ -8,7 +8,7 @@
     }
     console.log(y);
   ```
-
+> 1undefined
 
 2) Assuming obj is an “empty” object in scope, say:
   ```js
@@ -20,10 +20,10 @@
       obj[k] = undefined;
     });
   ```
-  ##  {
-    JS: undefined,
-    C++: undefined,
-  }
+  >  {
+  >  JS: undefined,
+  >  C++: undefined,
+  > }
 
 3) What will the code below output to the console and why?
   ```js
@@ -34,6 +34,8 @@
     console.log("a defined? " + (typeof a !== 'undefined'));
     console.log("b defined? " + (typeof b !== 'undefined'));
   ```
+> a defined? false
+> b defined? true
 
 4) What will the following code output and why?
   ```js
@@ -49,10 +51,10 @@
     }
     outer();
   ```
-  ## 3
+  > 3
 
 5) What will the following code output and why?
   ```js
     console.log(typeof typeof 1);
   ```
-  ## string
+  > string
