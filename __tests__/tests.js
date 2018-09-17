@@ -129,9 +129,9 @@ describe('limitFunctionCallCount', () => {
     expect(typeof limitFunctionCallCount()).toBe('function');
   });
   it('should return a wrapped version of the original function that can only be invoked n times', () => {
-    const foo = () => (true);
+    const foo = () => (1);
     const limitedFunction = limitFunctionCallCount(foo, 2);
-    expect(limitedFunction()).toBe(true);
+    expect(limitedFunction()).toBe(1);
     limitedFunction();
     expect(limitedFunction()).toBe(null);
   });
