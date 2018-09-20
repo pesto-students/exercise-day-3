@@ -12,7 +12,12 @@ function reverseString(string) {
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  const bins = str.split(' ');
+  const arr = [];
+  for (let i = 0; i < bins.length; i += 1) {
+    arr.push(String.fromCharCode(parseInt(bins[i], 2)));
+  }
+  return arr.join('');
 }
 
 /** (*)
@@ -74,7 +79,7 @@ function telephoneCheck(str) {
  * All letters will be uppercase. Do not transform any non-alphabetic
  * character (i.e. spaces, punctuation), but do pass them on.
  */
-function rot13(str) {
+function rot13(str) { // anirudha's solution
   // LBH QVQ VG!
   let dec = '';
   for (let i = 0; i < str.length; i += 1) {
@@ -103,17 +108,17 @@ function rot13(str) {
  */
 function largestOfFour(arr) {
   // eslint-disable-next-line
-  let newArr = [];
-  for (let i = 0; i < 4; i += 1) {
-    let max = arr[i][0];
-    for (let j = 1; j < 4; j += 1) {
-      if (arr[i][j] > max) {
-        max = arr[i][j];
+  const result = [];
+  arr.forEach((array) => {
+    let temp = 0;
+    array.forEach((number) => {
+      if (number > temp) {
+        temp = number;
       }
-    }
-    newArr.push(max);
-  }
-  return newArr;
+    });
+    result.push(temp);
+  });
+  return result;
 }
 
 /** (*)
