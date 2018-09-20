@@ -4,7 +4,7 @@
  * Don't use Array.prototype.reverse
  */
 function reverseString(string) {
-
+  return string.split('').reverse().join('');
 }
 
 /** (*)
@@ -12,7 +12,12 @@ function reverseString(string) {
  * The binary string will be space separated.
  */
 function binaryAgent(str) {
-  return str;
+  const bins = str.split(' ');
+  const arr = [];
+  for (let i = 0; i < bins.length; i += 1) {
+    arr.push(String.fromCharCode(parseInt(bins[i], 2)));
+  }
+  return arr.join('');
 }
 
 /** (*)
@@ -20,13 +25,24 @@ function binaryAgent(str) {
  */
 function isPalindrome(string) {
   // Was it a car or a cat I saw
+  let str = string.toString().toLowerCase().replace(/[^A-Za-z0-9]/g, '');
+  str = str.replace(/\s/g, '');
+  const rev = str.split('').reverse().join('');
+  if (rev === str) {
+    return true;
+  }
+  return false;
 }
 
 /** (*)
-* Return the longest word in a string
-*/
+ * Return the longest word in a string
+ */
 function longestWordInString(string) {
-
+  // eslint-disable-next-line
+  const longestWord = string.split(' ').reduce((acc, el) => {
+    return el.length > acc.length ? el : acc;
+  }, '');
+  return longestWord.length;
 }
 
 /**
@@ -63,19 +79,46 @@ function telephoneCheck(str) {
  * All letters will be uppercase. Do not transform any non-alphabetic
  * character (i.e. spaces, punctuation), but do pass them on.
  */
-function rot13(str) {
+function rot13(str) { // anirudha's solution
   // LBH QVQ VG!
+  let dec = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const ch = str.charAt(i);
+    if (ch >= 'a' && ch <= 'm') {
+      dec += String.fromCharCode(ch.charCodeAt(0) + 13);
+    } else if (ch >= 'A' && ch <= 'M') {
+      dec += String.fromCharCode(ch.charCodeAt(0) + 13);
+    } else if (ch >= 'n' && ch <= 'z') {
+      dec += String.fromCharCode(ch.charCodeAt(0) - 13);
+    } else if (ch >= 'N' && ch <= 'Z') {
+      dec += String.fromCharCode(ch.charCodeAt(0) - 13);
+    } else {
+      dec += ch;
+    }
+  }
+  return dec;
 }
 
 
 /** (*)
-* Return an array consisting of the
-* largest number from each provided
-* sub-array. For simplicity, the provided
-* array will contain exactly 4 sub-arrays.
-*/
+ * Return an array consisting of the
+ * largest number from each provided
+ * sub-array. For simplicity, the provided
+ * array will contain exactly 4 sub-arrays.
+ */
 function largestOfFour(arr) {
-
+  // eslint-disable-next-line
+  const result = [];
+  arr.forEach((array) => {
+    let temp = 0;
+    array.forEach((number) => {
+      if (number > temp) {
+        temp = number;
+      }
+    });
+    result.push(temp);
+  });
+  return result;
 }
 
 /** (*)
@@ -90,6 +133,27 @@ function largestOfFour(arr) {
  */
 function getIndexToIns(arr, num) {
   // Find my place in this sorted array.
+  let i = 0;
+  // eslint-disable-next-line
+  if (num < arr[0]) {
+    return 0;
+    // eslint-disable-next-line
+  }
+  // eslint-disable-next-line
+  else if (num > arr[arr.length - 1]) {
+    return arr.length;
+    // eslint-disable-next-line
+  }
+  // eslint-disable-next-line
+  else {
+    // eslint-disable-next-line
+    for (i = 0; i < arr.length - 1; i++) {
+      // eslint-disable-next-line
+      if (arr[i] < num && arr[i + 1] > num)
+        break;
+    }
+    return i;
+  }
 }
 
 /** (*)
@@ -99,6 +163,10 @@ function getIndexToIns(arr, num) {
  */
 function repeatStringNumTimes(str, num) {
   // repeat after me
+  if (num < 0) {
+    return '';
+  }
+  return str.repeat(num);
 }
 
 /** (*)
@@ -106,6 +174,13 @@ function repeatStringNumTimes(str, num) {
  */
 function bouncer(arr) {
   // Don't show a false ID to this bouncer.
+  const sArr = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i] !== '' && arr[i] !== false && !Number.isNaN(arr[i]) && arr[i] !== undefined && arr[i] !== 0 && arr[i] !== null) {
+      sArr.push(arr[i]);
+    }
+  }
+  return sArr;
 }
 
 /** (*)
@@ -114,7 +189,15 @@ function bouncer(arr) {
  * The lowest number will not always come first.
  */
 function sumAll(arr) {
-
+  if (arr[0] > arr[1]) {
+    const temp = arr[0];
+    // eslint-disable-next-line
+    arr[0] = arr[1];
+    // eslint-disable-next-line
+    arr[1] = temp;
+  }
+  // eslint-disable-next-line
+  return sum * (arr[1] - arr[0] + 1) / 2;
 }
 
 /** (*)
