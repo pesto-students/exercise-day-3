@@ -129,9 +129,9 @@ describe('limitFunctionCallCount', () => {
     expect(typeof limitFunctionCallCount()).toBe('function');
   });
   it('should return a wrapped version of the original function that can only be invoked n times', () => {
-    const foo = () => (true);
+    const foo = () => (1);
     const limitedFunction = limitFunctionCallCount(foo, 2);
-    expect(limitedFunction()).toBe(true);
+    expect(limitedFunction()).toBe(1);
     limitedFunction();
     expect(limitedFunction()).toBe(null);
   });
@@ -188,35 +188,35 @@ describe('rectangleBlock', () => {
 
 describe('Logical operators', () => {
   test('(a && b) || c', () => {
-    expect(('a' && 'b') || 'c').toBe('replace this');
+    expect(('a' && 'b') || 'c').toBe('b');
   });
 
   test('(a || b) && c', () => {
-    expect(('a' || 'b') && 'c').toBe('replace this');
+    expect(('a' || 'b') && 'c').toBe('c');
   });
 
   test('null && (b || c)', () => {
-    expect(null && ('b' || 'c')).toBe('replace this');
+    expect(null && ('b' || 'c')).toBe(null);
   });
 
   test('a && (null || c)', () => {
-    expect('a' && (null || 'c')).toBe('replace this');
+    expect('a' && (null || 'c')).toBe('c');
   });
 
   test('a && (b || null)', () => {
-    expect('a' && ('b' || null)).toBe('replace this');
+    expect('a' && ('b' || null)).toBe('b');
   });
 
   test('a || (b && c)', () => {
-    expect('a' || ('b' && 'c')).toBe('replace this');
+    expect('a' || ('b' && 'c')).toBe('a');
   });
 
   test('null || (b && c)', () => {
-    expect(null || ('b' && 'c')).toBe('replace this');
+    expect(null || ('b' && 'c')).toBe('c');
   });
 
   test('a || (null && c)', () => {
-    expect('a' || (null && 'c')).toBe('replace this');
+    expect('a' || (null && 'c')).toBe('a');
   });
 });
 
