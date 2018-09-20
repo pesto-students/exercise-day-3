@@ -78,6 +78,8 @@ function limitFunctionCallCount(cb, n) {              // [Important]
 // then it should return the cached result and not invoke `cb` again.
 // `cb` should only ever be invoked once for a given set of arguments.
 function cacheFunction(cb) {
+  return () => {
+  };
 }
 
 /** Q7 (*)
@@ -95,15 +97,17 @@ function applyOperator() {        // [check] why this is not working function ap
     return args.reduce(re);
   }
   function doSub(args) {
-    const re = (acc, el) => acc - el;
-    return args.reduce(re);
+    let sub = 0;
+    // eslint-disable-next-line
+    args.forEach((el) => sub -= el);
+    return sub;
   }
   function doMul(args) {
     const re = (acc, el) => acc * el;
     return args.reduce(re);
   }
   function doDiv(args) {
-    const re = (acc, el) => acc * el;
+    const re = (acc, el) => acc / el;
     return args.reduce(re);
   }
   function doMod(args) {
@@ -117,26 +121,23 @@ function applyOperator() {        // [check] why this is not working function ap
   switch (arguments[0]) {
     case '+':
       // eslint-disable-next-line
-      return doSum(arguments);
-      // eslint-disable-next-line
-      break;
+      return (doSum(Object.values(arguments).splice(1)));
     case '-':
       // eslint-disable-next-line
-      return doSub(arguments);
-      //  break;
+      return (doSub(Object.values(arguments).splice(1)));
     case '*':
       // eslint-disable-next-line
-      return doMul(arguments);
+      return (doMul(Object.values(arguments).splice(1)));
       // eslint-disable-next-line
       break;
     case '/':
       // eslint-disable-next-line
-      return doDiv(arguments);
+     return Number(parseFloat(doDiv(Object.values(arguments).splice(1))).toFixed(4));
       // eslint-disable-next-line
       break;
     case '%':
       // eslint-disable-next-line
-      return doMod(arguments);
+      return (doMod(Object.values(arguments).splice(1)));
       // eslint-disable-next-line
       break;
     default:
@@ -146,7 +147,6 @@ function applyOperator() {        // [check] why this is not working function ap
       break;
   }
 }
-
 /** Q8 (*)
  * Do this without using the % operator.
  */
